@@ -1,0 +1,8 @@
+{
+  "name": "linksmedicus",
+  "app_id": "b3e3f1de",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
