@@ -1,0 +1,35 @@
+page-specialties {
+
+    .content {
+        background: #fff;
+    }
+    h2 {
+        padding: 8px 4px 0;
+        font-size: 20px;
+        color: #535353;
+    }
+
+    .specialtie-box {
+        background: #156e8c;
+        color: #fff;
+        padding:10px;
+        text-align: center;
+        p {
+            margin: 4px 0 0 0;
+        }
+        img {
+            width:70px;
+            height:60px;
+        }
+    }
+    .grid {
+        padding:0;
+    }
+    .row {
+        padding: 2px;
+    }
+    .col {
+        padding:2px;
+    }
+
+}

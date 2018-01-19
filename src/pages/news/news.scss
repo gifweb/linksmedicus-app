@@ -1,0 +1,12 @@
+page-news {
+    h4 {
+        padding: 5px 10px;
+    }
+    .toolbar {
+        padding:0;
+        .select-category {
+            background: transparent;
+            border-bottom: 2px solid color($colors, primary) !important;
+        }
+    }
+}
