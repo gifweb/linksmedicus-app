@@ -2,10 +2,10 @@
 
 
   <ion-content class="menu-content">
-      <ion-toolbar color="light">
-          <img src="assets/img/logo.png" style="padding:4px" />
-        </ion-toolbar>
-    <ion-list>
+    <ion-toolbar color="light">
+      <img src="assets/img/logo.png" style="padding:4px" />
+    </ion-toolbar>
+    <ion-list class="list-menu">
       <button menuClose ion-item (click)="openPage('news')" detail-push>
         Top10 / News in all Specialties
       </button>
@@ -15,9 +15,9 @@
       <button menuClose ion-item (click)="openPage('library')" detail-push>
         Library - Guidelines & Reports
       </button>
-      <button menuClose ion-item detail-push>
+      <!--button menuClose ion-item detail-push>
         RSS Feed
-      </button>
+      </button-->
       <button menuClose ion-item (click)="openPage('about')" detail-push>
         About Us
       </button>
@@ -32,21 +32,20 @@
 
   <ion-content class="menu-content">
     <ion-list>
-      <ion-searchbar placeholder="Medical Search" [(ngModel)]="myInput"></ion-searchbar>
       <ion-item>
         <ion-label stacked>Search Database</ion-label>
-        <ion-select [(ngModel)]="toppings">
-          <ion-option selected>Links Medicus</ion-option>
-          <ion-option>PubMed</ion-option>
-          <ion-option>Google</ion-option>
-          <ion-option>Google Images</ion-option>
-          <ion-option>Daily Med</ion-option>
+        <ion-select [(ngModel)]="selectedSearch">
+          <ion-option selected [value]="''">Links Medicus</ion-option>
+          <ion-option *ngFor="let search of searches" [value]="search">{{search.title}}</ion-option>
         </ion-select>
       </ion-item>
+      <form (submit)="search()">
+        <ion-searchbar placeholder="Medical Search" [ngModelOptions]="{standalone: true}" [(ngModel)]="searchInput"></ion-searchbar>
+      </form>
     </ion-list>
   </ion-content>
 
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav [root]="rootPage" [rootParams]="rootParams" #content swipeBackEnabled="false"></ion-nav>

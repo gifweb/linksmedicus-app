@@ -49,6 +49,36 @@ function add_custom_data() {
 			'context' => array('view', 'edit')
 		)
 	));
+
+	register_rest_field('guidelines', 'guidelines', array(
+		'get_callback' => 'get_guideline_data',
+		'schema' => array(
+			'description' => 'Guideline',
+			'type' => 'object',
+			'context' => array('view')
+		)
+	));
+
+	register_rest_field('search', 'url', array(
+		'get_callback' => 'get_searchlink_data',
+		'schema' => array(
+			'description' => 'Link',
+			'type' => 'string',
+			'context' => array('view', 'edit')
+		)
+	));
+}
+
+function get_searchlink_data($object, $field_name, $request) {
+	if (function_exists('get_field')) {
+		return get_field('search', $object['id']);
+	}
+}
+
+function get_guideline_data($object, $field_name, $request) {
+	if (function_exists('get_field')) {
+		return get_field('001', $object['id']);
+	}
 }
 
 function get_link_data($object, $field_name, $request) {
@@ -74,4 +104,17 @@ function get_nomepc_data($object, $field_name, $request) {
 	if (function_exists('the_field')) {
 		return get_field('nome_pc', 'category_'.$object['id']);
 	}
+}
+
+
+add_action( 'init', 'my_custom_post_type_rest_support', 25 );
+function my_custom_post_type_rest_support() {
+  global $wp_post_types;
+ 
+  //be sure to set this to the name of your post type!
+  $post_type_name = 'search';
+  if( isset( $wp_post_types[ $post_type_name ] ) ) {
+    $wp_post_types[$post_type_name]->show_in_rest = true;
+    $wp_post_types[$post_type_name]->rest_base = $post_type_name;
+  }
 }

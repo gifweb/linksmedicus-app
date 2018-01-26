@@ -34,7 +34,7 @@ export class OpenUrlProvider {
   }
 
   private openBrowserTab(url: string) {
-    this.browserTab.openUrl(url);
+    this.browserTab.openUrl(url, {toolbarColor:"#156e8b"});
   }
 
   private openThemeable(url: string) {
@@ -42,11 +42,11 @@ export class OpenUrlProvider {
       hidden: 'true',
       hardwareback: 'true',
       statusbar: {
-        color: '#007F9Aff'
+        color: '#00156e8b'
       },
       toolbar: {
         height: 44,
-        color: '#007F9Aff'
+        color: '#00156e8b'
       },
       title: {
         color: '#ffffffff',

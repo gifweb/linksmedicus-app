@@ -10,6 +10,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BrowserTab } from '@ionic-native/browser-tab';
 import { ThemeableBrowser } from '@ionic-native/themeable-browser';
+import { Deeplinks } from '@ionic-native/deeplinks';
+import { OneSignal } from '@ionic-native/onesignal';
+import { HeaderColor } from '@ionic-native/header-color';
 
 //Providers
 import { WpProvider } from '../providers/wp/wp';
@@ -33,6 +36,9 @@ import { OpenUrlProvider } from '../providers/open-url/open-url';
     SplashScreen,
     BrowserTab,
     ThemeableBrowser,
+    Deeplinks,
+    OneSignal,
+    HeaderColor,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     WpProvider,
     OpenUrlProvider,

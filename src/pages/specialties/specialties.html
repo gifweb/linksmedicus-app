@@ -20,7 +20,7 @@
   <ng-container *ngIf="!(specialtiesLoading || generalTopicsLoading)">
     <h2>SPECIALTIES</h2>
     <ion-grid>
-      <ion-row>
+      <ion-row justify-content-center>
         <ion-col col-4 *ngFor="let cat of specialties">
           <div class="specialtie-box" (click)="openLinks(cat)">
             <img [src]="cat?.img" />

@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "com.linksmedicus.app",
+               "sha256_cert_fingerprints": ["50:DE:FB:6F:E9:99:BA:E4:F0:C3:68:12:A9:44:FA:55:F8:84:C1:7B:51:27:44:54:5D:C8:E1:7F:EB:2B:27:34"] }
+},
+{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "com.linksmedicus.app",
+               "sha256_cert_fingerprints": ["32:8C:ED:9A:17:1D:3D:CD:EC:78:35:F0:90:EA:AF:46:F8:28:4E:95:08:FF:93:88:4D:81:C2:13:83:E9:EB:ED"] }
+}]

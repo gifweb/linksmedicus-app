@@ -35,7 +35,7 @@ export class LinksPage {
   ) {
     this.category = this.navParams.get('category');
     if(this.category === undefined){
-      this.navCtrl.pop();
+      this.navCtrl.setPages([{page: 'specialties'}], {animate: true, animation: 'back'});
       return;
     }
     this.loadLinks(this.category.id, true);
@@ -56,6 +56,8 @@ export class LinksPage {
       if (infiniteScroll) {
         infiniteScroll.complete();
       }
+    }, () => {
+      infiniteScroll.complete();
     })
   }
 

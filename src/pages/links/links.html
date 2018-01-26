@@ -1,29 +1,29 @@
 <ion-header>
-    <ion-navbar color="primary">
-      <button ion-button menuToggle="left">
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>
-        {{category?.name}}       
-      </ion-title>
-      <button right ion-button menuToggle="right">
-        <ion-icon name="search"></ion-icon>
-      </button>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content #content class="links-content">
-  
-    <div padding text-center *ngIf="specialtiesLoading || linksLoading">
-      <ion-spinner name="crescent"></ion-spinner>
-    </div>
-    <ion-card *ngFor="let article of links" (click)="openExternal(article.url)">
-      <ion-card-header text-wrap [innerHTML]="article.title"></ion-card-header>
-      <ion-card-content>
-          <p text-wrap [innerHTML]="article.desc"></p>
-        </ion-card-content>
-    </ion-card>
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-      <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-  </ion-content>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle="left">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      {{category?.name}}
+    </ion-title>
+    <button right ion-button menuToggle="right">
+      <ion-icon name="search"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content #content class="links-content">
+
+  <div padding text-center *ngIf="specialtiesLoading || linksLoading">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+  <ion-card *ngFor="let article of links" (click)="openExternal(article.url)">
+    <ion-card-header text-wrap [innerHTML]="article.title"></ion-card-header>
+    <ion-card-content>
+      <p text-wrap [innerHTML]="article?.desc"></p>
+    </ion-card-content>
+  </ion-card>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

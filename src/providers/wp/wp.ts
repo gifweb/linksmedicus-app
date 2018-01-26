@@ -94,6 +94,61 @@ export class WpProvider {
       }));
   }
 
+
+  getSearch() {
+    return this.http.get(Config.WORDPRESS_REST_API_URL + "search?per_page=100")
+      .map(res => res.json())
+      .map(data => data.map(item => {
+        return {
+          id: item.id,
+          title: item.title.rendered,
+          url: item.url,
+          slug: item.slug,
+        };
+      }));
+  }
+
+  getGuideline() {
+    return this.http.get(Config.WORDPRESS_REST_API_URL + "guideline?per_page=100")
+      .map(res => res.json())
+      .map(data => data.map(item => {
+        return {
+          id: item.id,
+          name: item.name.replace(/&amp;/g, '&'),
+          count: item.count,
+          slug: item.slug,
+        };
+      }));
+  }
+
+  getGuidelines(guideline, page?: number) {
+    if (page === undefined) {
+      page = 1;
+    }
+    return this.http.get(
+      Config.WORDPRESS_REST_API_URL +
+      "guidelines?per_page=10" +
+      "&guideline=" +
+      guideline +
+      "&orderby=date" +
+      "&page=" +
+      page
+    )
+      .map(res => {
+        return res;
+      })
+      .map(res => res.json())
+      .map(data => data.map(item => {
+        return {
+          id: item.id,
+          date: item.date,
+          title: item.title.rendered,
+          guidelines: item.guidelines,
+          slug: item.slug,
+        };
+      }));
+  }
+
   getNews(specialtie, page?: number) {
     if (page === undefined) {
       page = 1;

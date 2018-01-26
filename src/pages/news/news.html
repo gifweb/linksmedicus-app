@@ -32,6 +32,7 @@
   <ion-card *ngFor="let article of news">
     <ion-card-header text-wrap [innerHTML]="article.title"></ion-card-header>
     <ion-card-content>
+      <h4>{{article?.date | date: 'd MMM,y'}}</h4>
       <p text-wrap [innerHTML]="article.content"></p>
     </ion-card-content>
   </ion-card>

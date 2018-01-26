@@ -69,6 +69,8 @@ export class NewsPage {
       if (infiniteScroll) {
         infiniteScroll.complete();
       }
+    }, () => {
+      infiniteScroll.complete();
     })
   }
 

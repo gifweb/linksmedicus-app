@@ -1,0 +1,15 @@
+page-library {
+
+    .dark .item {
+        background-color: color($colors, primary);
+        color: #fff;
+        border: none;
+        border-top: 1px solid #fff !important;
+        max-height: none;
+        padding:7px 15px;
+    }
+    .dark .item:last-child {
+        border-bottom: 1px solid #fff !important;
+    }
+   
+}
