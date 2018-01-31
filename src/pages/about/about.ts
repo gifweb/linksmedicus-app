@@ -36,4 +36,8 @@ export class AboutPage {
     console.log('ionViewDidLoad AboutPage');
   }
 
+  openNews(evt) {
+    console.log(evt);
+    this.navCtrl.push('news', { specialtie: evt })
+  }
 }

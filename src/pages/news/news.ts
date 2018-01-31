@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, Content } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { WpProvider } from '../../providers/wp/wp';
 import { LoadingController } from 'ionic-angular';
 import { InfiniteScroll } from 'ionic-angular';
@@ -21,10 +21,9 @@ export class NewsPage {
   newsLoading: boolean = false;
   newsPage: number = 1;
 
-  specialties: any[];
-  specialtiesLoading: boolean = false;
+  archive: any = false;
 
-  _specialtie: any = 177;
+  _specialtie: any;
   get specialtie(): number {
     return this._specialtie;
   }
@@ -37,14 +36,17 @@ export class NewsPage {
 
   constructor(
     public navCtrl: NavController,
+    public navParams: NavParams,
     private wp: WpProvider,
     private loadingCtrl: LoadingController,
     private openUrl: OpenUrlProvider,
   ) {
-    this.loadSpecialties();
+    //this.loadSpecialties();
+    this.archive = (this.navParams.get('archive')) ? this.navParams.get('archive') : false;
+    this._specialtie = (this.navParams.get('specialtie')) ? this.navParams.get('specialtie') : 177;
   }
 
-  loadSpecialties() {
+  /*loadSpecialties() {
     this.specialtiesLoading = true;
     this.wp.getSpecialties().subscribe((data) => {
       this.specialtiesLoading = false;
@@ -52,14 +54,14 @@ export class NewsPage {
       this.specialties = data;
       this.specialtie = 177;
     })
-  }
+  }*/
 
   loadNews(specialtie, flush?, infiniteScroll?: InfiniteScroll) {
     if (flush) {
       this.news = [];
     }
     this.newsLoading = true;
-    this.wp.getNews(specialtie, this.newsPage).subscribe((data) => {
+    this.wp.getNews(specialtie, this.newsPage, this.archive).subscribe((data) => {
       console.log('getNews', data);
       data.map(item => {
         this.news.push(item);
@@ -70,7 +72,10 @@ export class NewsPage {
         infiniteScroll.complete();
       }
     }, () => {
-      infiniteScroll.complete();
+      this.newsLoading = false;
+      if (infiniteScroll) {
+        infiniteScroll.complete();
+      }
     })
   }
 
@@ -103,6 +108,10 @@ export class NewsPage {
         }
       }
     }, 500);
+  }
+
+  changeTopic(evt){
+    this.specialtie = evt;
   }
 
 

@@ -1,27 +1,17 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <button ion-button menuToggle="left">
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      <div (click)="scrollTop()">
-        <img src="assets/img/logo-branco.png" class="header-logo" />
-      </div>
-    </ion-title>
-    <button right ion-button menuToggle="right">
-      <ion-icon name="search"></ion-icon>
-    </button>
-  </ion-navbar>
+  <app-header></app-header>
 </ion-header>
 
+<ion-content>
 
-<ion-content padding>
+  <select-topic (onSelectTopic)="openNews($event)"></select-topic>
+
   <div padding text-center *ngIf="aboutLoading">
     <ion-spinner name="crescent"></ion-spinner>
   </div>
 
-  <ng-container *ngIf="!(aboutLoading)">
+  <div padding *ngIf="!(aboutLoading)">
     <h2>{{about?.title}}</h2>
     <div text-center [innerHTML]="about?.content"></div>
-  </ng-container>
+  </div>
 </ion-content>

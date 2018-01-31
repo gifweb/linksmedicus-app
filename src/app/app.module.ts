@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
@@ -17,6 +18,7 @@ import { HeaderColor } from '@ionic-native/header-color';
 //Providers
 import { WpProvider } from '../providers/wp/wp';
 import { OpenUrlProvider } from '../providers/open-url/open-url';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { OpenUrlProvider } from '../providers/open-url/open-url';
   imports: [
     BrowserModule,
     HttpModule,
+    FormsModule,
     IonicModule.forRoot(MyApp),
+    ComponentsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

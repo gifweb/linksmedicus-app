@@ -66,7 +66,7 @@ export class WpProvider {
   }
 
   getGeneralTopicsCategories() {
-    return this.http.get(Config.WORDPRESS_REST_API_URL + "categories?include=45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64&orderby=name&per_page=100")
+    return this.http.get(Config.WORDPRESS_REST_API_URL + "categories?include=45,46,47,48,49,50,51,52,53,54,55,56,57,58,61,62,63,64&orderby=name&per_page=100")
       .map(res => res.json())
       .map(data => data.map(item => {
         return {
@@ -127,7 +127,7 @@ export class WpProvider {
     }
     return this.http.get(
       Config.WORDPRESS_REST_API_URL +
-      "guidelines?per_page=10" +
+      "guidelines?per_page=100" +
       "&guideline=" +
       guideline +
       "&orderby=date" +
@@ -149,17 +149,58 @@ export class WpProvider {
       }));
   }
 
-  getNews(specialtie, page?: number) {
+  getArchives() {
+
+    return this.http.get(
+      Config.WORDPRESS_REST_API_BASE + "wp-archive/v1/archive"
+    )
+      .map(res => {
+        return res;
+      })
+      .map(res => res.json())
+      .map(data => data.map(item => {
+        return {
+          text: item.text,
+          date: item.date,
+        };
+      }));
+  }
+
+  paddinZeros(str, size) {
+    var s = String(str);
+    while (s.length < (size || 2)) {s = "0" + s;}
+    return s;
+  }
+
+  getNews(specialtie, page?: number, archive?: any) {
     if (page === undefined) {
       page = 1;
     }
+
+    console.log('getNews archive:', archive);
+
+
+    let getNewsUrl = Config.WORDPRESS_REST_API_URL + "news?per_page=5";
+
+
+    if (archive) {
+      const afterDate = archive.date[0] + '-' + this.paddinZeros(archive.date[1], 2) + '-' + this.paddinZeros(archive.date[2], 2) + 'T00:00:00'
+      const beforeDate = archive.date[0] + '-' + this.paddinZeros(archive.date[1], 2) + '-' + this.paddinZeros(archive.date[2], 2) + 'T23:59:59'
+      getNewsUrl += "&before=" + beforeDate + "&after=" + afterDate;
+    } else {
+      if (specialtie) {
+        getNewsUrl += "&specialties=" + specialtie;
+      }
+    }
+
+    if (page) {
+      getNewsUrl += "&page=" + page;
+    }
+
+
+
     return this.http.get(
-      Config.WORDPRESS_REST_API_URL +
-      "news?per_page=5" +
-      "&specialties=" +
-      specialtie +
-      "&page=" +
-      page
+      getNewsUrl
     )
       .map(res => res.json())
       .map(data => data.map(item => {

@@ -54,4 +54,10 @@ export class SpecialtiesPage {
     console.log('ionViewDidLoad SpecialtiesPage');
   }
 
+
+  openNews(evt) {
+    console.log(evt);
+    this.navCtrl.push('news', { specialtie: evt })
+  }
+
 }

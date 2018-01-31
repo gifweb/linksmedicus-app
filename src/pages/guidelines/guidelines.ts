@@ -54,6 +54,7 @@ export class GuidelinesPage {
         infiniteScroll.complete();
       }
     }, () => {
+      this.guidelinesLoading = false;
       infiniteScroll.complete();
     })
   }
@@ -72,6 +73,11 @@ export class GuidelinesPage {
 
   openExternal(url){
     this.openUrl.open(url);
+  }
+
+  openNews(evt) {
+    console.log(evt);
+    this.navCtrl.push('news', { specialtie: evt })
   }
 
 }

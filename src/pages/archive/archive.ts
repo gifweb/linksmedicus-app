@@ -3,18 +3,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WpProvider } from '../../providers/wp/wp';
 
 @IonicPage({
-  name: 'library',
+  name: 'archive',
   priority: 'high',
-  segment: 'library'
+  segment: 'archive'
 })
 @Component({
-  selector: 'page-library',
-  templateUrl: 'library.html',
+  selector: 'page-archive',
+  templateUrl: 'archive.html',
 })
-export class LibraryPage {
+export class ArchivePage {
 
-  guidelines: any[];
-  guidelinesLoading: boolean = false;
+  archives: any[];
+  archivesLoading: boolean = false;
 
 
   constructor(
@@ -22,19 +22,19 @@ export class LibraryPage {
     public navParams: NavParams,
     private wp: WpProvider,
   ) {
-    this.loadGuideline();
+    this.loadArchives();
   }
 
-  loadGuideline() {
-    this.guidelinesLoading = true;
-    this.wp.getGuideline().subscribe((data) => {
-      this.guidelinesLoading = false;
-      this.guidelines = data;
+  loadArchives() {
+    this.archivesLoading = true;
+    this.wp.getArchives().subscribe((data) => {
+      this.archivesLoading = false;
+      this.archives = data;
     })
   }
 
-  openGuideline(guideline) {
-    this.navCtrl.push('guidelines', { guideline, slug: guideline.slug });
+  openArchive(archive) {
+    this.navCtrl.push('news', { archive });
   }
 
   ionViewDidLoad() {

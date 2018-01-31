@@ -1,31 +1,11 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <button ion-button menuToggle="left">
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      <div (click)="scrollTop()">
-        <img src="assets/img/logo-branco.png" class="header-logo" />
-      </div>
-    </ion-title>
-    <button right ion-button menuToggle="right">
-      <ion-icon name="search"></ion-icon>
-    </button>
-  </ion-navbar>
+  <app-header></app-header>
 </ion-header>
 
 <ion-content #content class="news-content">
 
-  <div>
-    <ion-toolbar color="medium" no-lines>
-      <ion-item class="select-category" no-lines>
-        <ion-label stacked>Select a Topic or Specialtie</ion-label>
-        <ion-select [(ngModel)]="specialtie">
-          <ion-option *ngFor="let specialty of specialties" [value]="specialty.id" [innerHTML]="specialty.name" text-wrap></ion-option>
-        </ion-select>
-      </ion-item>
-    </ion-toolbar>
-  </div>
+  <select-topic [hidden]="archive" [specialtie]="specialtie" (onSelectTopic)="changeTopic($event)"></select-topic>
+
   <div padding text-center *ngIf="specialtiesLoading || newsLoading">
     <ion-spinner name="crescent"></ion-spinner>
   </div>

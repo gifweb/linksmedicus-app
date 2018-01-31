@@ -1,0 +1,19 @@
+<ion-navbar color="light">
+  <ion-buttons left>
+    <button ion-button menuToggle="left">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-buttons>
+
+  <ion-title>
+    <div (click)="scrollTop()">
+      <img src="assets/img/logo-final.png" class="header-logo" />
+    </div>
+  </ion-title>
+  <ion-buttons right>
+    <button ion-button icon-only (click)="toggleRightMenu()">
+      <ion-icon name="search"></ion-icon>
+    </button>
+  </ion-buttons>
+
+</ion-navbar>

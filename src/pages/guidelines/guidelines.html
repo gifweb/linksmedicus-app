@@ -12,13 +12,14 @@
 
 <ion-content #content class="links-content">
 
+
   <div padding text-center *ngIf="guidelinesLoading ">
     <ion-spinner name="crescent"></ion-spinner>
   </div>
 
   <ng-container *ngFor="let guide of guidelines">
     <ion-item-group *ngFor="let gd of guide.guidelines">
-      <ion-item-divider ion-affix [content]="content">{{gd['002']}} <!--ion-icon item-right name="arrow-dropdown"></ion-icon--></ion-item-divider>
+      <ion-item-divider ion-affix [content]="content">{{gd['002']}} <ion-icon item-right name="arrow-dropdown"></ion-icon></ion-item-divider>
       <ng-container *ngFor="let item of gd['003']">
         <ion-item class="item-title">{{item['004']}}</ion-item>
         <ng-container *ngFor="let eachLink of item['005']">

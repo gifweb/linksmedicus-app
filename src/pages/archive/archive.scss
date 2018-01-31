@@ -1,0 +1,24 @@
+page-archive {
+
+    .content {
+        background: #fff;
+    }
+
+    .grid {
+        padding:10px;
+    }
+    .row {
+        padding: 1px;
+    }
+
+    .dark .col {
+        color: color($colors, primary);
+        max-height: none;
+        padding:1px;
+        > div {
+            background-color: color($colors, light);
+            padding: 7px 15px;
+            height:100%;
+        }
+    }   
+}

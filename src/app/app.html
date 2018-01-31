@@ -7,19 +7,25 @@
     </ion-toolbar>
     <ion-list class="list-menu">
       <button menuClose ion-item (click)="openPage('news')" detail-push>
-        Top10 / News in all Specialties
+        NEWS - TOP10 / ALL SPECIALTIES
       </button>
       <button menuClose ion-item (click)="openPage('specialties')" detail-push>
-        Specialties / General Topics
+        LINKS - SPECIALTIES
+      </button>
+      <button menuClose ion-item (click)="openPage('specialties')" detail-push>
+        LINKS - GENERAL TOPICS
       </button>
       <button menuClose ion-item (click)="openPage('library')" detail-push>
-        Library - Guidelines & Reports
+        LIBRARY – GUIDELINES & REPORTS
       </button>
+      <button menuClose ion-item (click)="openPage('archive')" detail-push>
+        ARCHIVES - ALL POSTS
+      </button> 
       <!--button menuClose ion-item detail-push>
         RSS Feed
       </button-->
       <button menuClose ion-item (click)="openPage('about')" detail-push>
-        About Us
+        ABOUT US
       </button>
 
     </ion-list>

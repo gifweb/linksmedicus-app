@@ -54,23 +54,30 @@
     white-space: initial;
 }
 
+
 .md {
     .header-logo {
         max-height: 44px;
         margin: 0 auto;
-        display:block;
+        display: block;
     }
-    .bar-button-menutoggle-md {
+    .bar-button-menutoggle,
+    .back-button {
         min-width: 34px;
+        margin:0;
         ion-icon {
             padding: 0 1px;
         }
     }
+    .bar-buttons-md[right] {
+        padding: 0 2px;
+    }
 }
+
 .ios {
     .header-logo {
         max-height: 35px;
         margin: 0 auto;
-        display:block;
+        display: block;
     }
 }
