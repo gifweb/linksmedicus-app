@@ -19,10 +19,12 @@ import { HeaderColor } from '@ionic-native/header-color';
 import { WpProvider } from '../providers/wp/wp';
 import { OpenUrlProvider } from '../providers/open-url/open-url';
 import { ComponentsModule } from '../components/components.module';
+import { GuidelinesPopoverPage } from '../pages/guidelines/guideline.popover';
 
 @NgModule({
   declarations: [
     MyApp,
+    GuidelinesPopoverPage,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { ComponentsModule } from '../components/components.module';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    GuidelinesPopoverPage,
   ],
   providers: [
     StatusBar,

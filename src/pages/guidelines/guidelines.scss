@@ -7,4 +7,15 @@ page-guidelines {
     .item-title {
         font-weight: bold;
     }
+    .icon-select-container {
+        width:100%;
+    }
+    .icon-select {
+       font-size:1.4em;
+       padding:15px 20px;
+       position:absolute;
+       top:0px;
+       right:0px;
+       z-index:20000;
+    }
 }
