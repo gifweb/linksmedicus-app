@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BrowserTab } from '@ionic-native/browser-tab';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { Platform } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Injectable()
 export class OpenUrlProvider {
@@ -10,6 +11,7 @@ export class OpenUrlProvider {
     private platform: Platform,
     private browserTab: BrowserTab,
     private themeableBrowser: ThemeableBrowser,
+    private socialSharing: SocialSharing,
   ) {
 
   }
@@ -33,8 +35,21 @@ export class OpenUrlProvider {
     }
   }
 
+  share(url: string, title: string, description: string) {
+
+    if (url.substr(0, 4) !== 'http') {
+      url = 'http://' + url;
+    }
+
+    if (this.platform.is('cordova')) {
+      return this.socialSharing.share(description, title, url).then(() => {
+        
+      })
+    }
+  }
+
   private openBrowserTab(url: string) {
-    this.browserTab.openUrl(url, {toolbarColor:"#156e8b"});
+    this.browserTab.openUrl(url, { toolbarColor: "#156e8b" });
   }
 
   private openThemeable(url: string) {

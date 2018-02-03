@@ -83,8 +83,8 @@ export class MyApp {
     })
   }
 
-  openPage(page) {
-    this.nav.setRoot(page);
+  openPage(page, params?) {
+    this.nav.setRoot(page, params);
   }
 
   search() {

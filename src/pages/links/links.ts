@@ -77,6 +77,10 @@ export class LinksPage {
     this.openUrl.open(url);
   }
 
+  share(url, title, description){
+    this.openUrl.share(url, title, description);
+  }
+
   /*updateLinks() {
     //use $timeout wait for items to be rendered before looking for links
     console.log('updateLinks');

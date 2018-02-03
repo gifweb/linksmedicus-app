@@ -2,9 +2,9 @@
 
 
   <ion-content class="menu-content">
-    <ion-toolbar color="light">
+    <!--ion-toolbar color="light">
       <img src="assets/img/logo.png" style="padding:4px" />
-    </ion-toolbar>
+    </ion-toolba-->
     <ion-list class="list-menu">
       <button menuClose ion-item (click)="openPage('news')" detail-push>
         NEWS - TOP10 / ALL SPECIALTIES
@@ -12,7 +12,7 @@
       <button menuClose ion-item (click)="openPage('specialties')" detail-push>
         LINKS - SPECIALTIES
       </button>
-      <button menuClose ion-item (click)="openPage('specialties')" detail-push>
+      <button menuClose ion-item (click)="openPage('specialties', {generalTopics: true})" detail-push>
         LINKS - GENERAL TOPICS
       </button>
       <button menuClose ion-item (click)="openPage('library')" detail-push>
@@ -27,7 +27,10 @@
       <button menuClose ion-item (click)="openPage('about')" detail-push>
         ABOUT US
       </button>
-
+      <br clear="all" />
+      <div text-center padding>
+        <img src="assets/img/logo.png" style="width:70%;" />
+      </div>
     </ion-list>
   </ion-content>
 

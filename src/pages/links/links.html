@@ -17,11 +17,32 @@
   <div padding text-center *ngIf="specialtiesLoading || linksLoading">
     <ion-spinner name="crescent"></ion-spinner>
   </div>
-  <ion-card *ngFor="let article of links" (click)="openExternal(article.url)">
-    <ion-card-header text-wrap [innerHTML]="article.title"></ion-card-header>
+  <ion-card *ngFor="let article of links">
+    <ion-card-header (click)="openExternal(article.url)" text-wrap [innerHTML]="article.title"></ion-card-header>
     <ion-card-content>
-      <p text-wrap [innerHTML]="article?.desc"></p>
+      <p (click)="openExternal(article.url)" text-wrap [innerHTML]="article?.desc"></p>
     </ion-card-content>
+    <ion-row>
+
+      <ion-col>
+        <button color="danger" ion-button icon-left clear small>
+          <ion-icon name="star"></ion-icon>
+          <div>Favorite</div>
+        </button>
+
+        <button (click)="openExternal(article.url, article.title, article.desc)" ion-button icon-left clear small>
+          <ion-icon name="share"></ion-icon>
+          <div>Share</div>
+        </button>
+
+        <button (click)="openExternal(article.url)" ion-button icon-left clear small>
+          <ion-icon name="open"></ion-icon>
+          <div>Open</div>
+        </button>
+
+      </ion-col>
+
+    </ion-row>
   </ion-card>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>

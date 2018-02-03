@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.linksmedicus.app" version="6.0.2" versionCode="60002" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.linksmedicus.app" version="6.0.3" versionCode="60003" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>LinksMedicus</name>
     <description>Free Medical Education Resources.</description>
     <author email="leoruhland@gmail.com" href="https://github.com/leoruhland">Leonardo Ruhland</author>
@@ -112,4 +112,5 @@
     <plugin name="cordova-plugin-headercolor" spec="~1.0" />
     <plugin name="cordova-plugin-browsertab" spec="~0.2.0" />
     <engine name="ios" spec="~4.3.1" />
+    <plugin name="cordova-plugin-x-socialsharing" spec="~5.2.1" />
 </widget>

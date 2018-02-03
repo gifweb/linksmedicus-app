@@ -1,7 +1,7 @@
 <div class="margin10">
   <ion-toolbar color="orange" no-lines>
     <ion-item class="select-category" no-lines>
-      <ion-label stacked>Select a Topic or Specialtie</ion-label>
+      <ion-label stacked>Select a Topic or Specialty</ion-label>
       <ion-select [(ngModel)]="specialtie">
         <ion-option *ngFor="let specialty of specialties" [value]="specialty.id" [innerHTML]="specialty.name" text-wrap></ion-option>
       </ion-select>

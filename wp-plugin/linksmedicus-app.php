@@ -118,3 +118,26 @@ function my_custom_post_type_rest_support() {
     $wp_post_types[$post_type_name]->rest_base = $post_type_name;
   }
 }
+
+add_filter( 'rest_post_collection_params', 'my_prefix_add_rest_orderby_params', 10, 1 );
+
+function my_prefix_add_rest_orderby_params( $params ) {
+	$params['orderby']['enum'][] = 'menu_order';
+	//echo json_encode($params, true);
+	//die();
+    return $params;
+}
+
+add_filter('rest_endpoints', function ($routes) {
+	if (!($route =& $routes['/wp/v2/guidelines'])) {
+		return $routes;
+	}
+	$route[0]['args']['orderby']['enum'][] = 'menu_order';
+    $route[0]['args']['meta_key'] = array(
+      'description'       => 'The meta key to query.',
+      'type'              => 'string',
+      'enum'              => ['menu_order'],
+      'validate_callback' => 'rest_validate_request_arg',
+    );
+	return $routes;
+});

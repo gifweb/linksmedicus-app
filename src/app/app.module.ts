@@ -14,6 +14,7 @@ import { ThemeableBrowser } from '@ionic-native/themeable-browser';
 import { Deeplinks } from '@ionic-native/deeplinks';
 import { OneSignal } from '@ionic-native/onesignal';
 import { HeaderColor } from '@ionic-native/header-color';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 //Providers
 import { WpProvider } from '../providers/wp/wp';
@@ -46,6 +47,7 @@ import { GuidelinesPopoverPage } from '../pages/guidelines/guideline.popover';
     Deeplinks,
     OneSignal,
     HeaderColor,
+    SocialSharing,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     WpProvider,
     OpenUrlProvider,

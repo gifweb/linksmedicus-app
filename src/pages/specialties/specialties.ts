@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { WpProvider } from '../../providers/wp/wp';
+import { ViewChild } from '@angular/core';
 
 @IonicPage({
   name: 'specialties'
@@ -17,6 +18,10 @@ export class SpecialtiesPage {
   generalTopics: any[];
   generalTopicsLoading: boolean = false;
 
+  loaded: number = 0;
+
+  @ViewChild('content') content: Content;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -24,6 +29,8 @@ export class SpecialtiesPage {
   ) {
     this.loadSpecialties();
     this.loadGeneralTopics();
+
+
   }
 
   loadSpecialties() {
@@ -31,6 +38,7 @@ export class SpecialtiesPage {
     this.wp.getSpecialtiesCategories().subscribe((data) => {
       this.specialtiesLoading = false;
       this.specialties = data;
+      this.generalTopicsCheck()
     })
   }
 
@@ -41,10 +49,27 @@ export class SpecialtiesPage {
     this.wp.getGeneralTopicsCategories().subscribe((data) => {
       this.generalTopicsLoading = false;
       this.generalTopics = data;
+      this.generalTopicsCheck()
     })
 
 
   }
+
+  generalTopicsCheck() {
+    this.loaded++;
+    if (this.loaded > 1) {
+      const isGeneralTopics = this.navParams.get('generalTopics');
+      if (isGeneralTopics) {
+        setTimeout(() => {
+          let element = document.getElementById('generalTopics');
+          this.content.scrollTo(0, element.offsetTop, 0);
+        }, 50)
+
+      }
+    }
+
+  }
+
 
   openLinks(category) {
     this.navCtrl.push('links', { category, slug: category.slug });

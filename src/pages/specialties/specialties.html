@@ -2,7 +2,7 @@
   <app-header></app-header>
 </ion-header>
 
-<ion-content>
+<ion-content #content>
 
   <select-topic (onSelectTopic)="openNews($event)"></select-topic>
 
@@ -23,7 +23,7 @@
       </ion-row>
     </ion-grid>
 
-    <h2>GENERAL TOPICS</h2>
+    <h2 id="generalTopics">GENERAL TOPICS</h2>
     <ion-grid>
       <ion-row>
         <ion-col col-4 *ngFor="let cat of generalTopics">

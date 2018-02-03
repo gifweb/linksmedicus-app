@@ -128,9 +128,9 @@ export class WpProvider {
     return this.http.get(
       Config.WORDPRESS_REST_API_URL +
       "guidelines?per_page=100" +
-      "&guideline=" +
-      guideline +
-      "&orderby=date" +
+      "&guideline=" + guideline +
+      "&orderby=menu_order" +
+      "&order=asc" +
       "&page=" +
       page
     )
