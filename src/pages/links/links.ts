@@ -5,6 +5,7 @@ import { LoadingController } from 'ionic-angular';
 import { InfiniteScroll } from 'ionic-angular';
 import { OpenUrlProvider } from '../../providers/open-url/open-url';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
+import { FavProvider } from '../../providers/fav/fav';
 
 @IonicPage({
   name: 'links',
@@ -23,6 +24,7 @@ export class LinksPage {
   links: any[];
   linksLoading: boolean = false;
   linksPage: number = 1;
+  favs: any[];
 
   category: any;
 
@@ -32,13 +34,45 @@ export class LinksPage {
     private wp: WpProvider,
     private loadingCtrl: LoadingController,
     private openUrl: OpenUrlProvider,
+    private fav: FavProvider,
   ) {
     this.category = this.navParams.get('category');
-    if(this.category === undefined){
-      this.navCtrl.setPages([{page: 'specialties'}], {animate: true, animation: 'back'});
+    if (this.category === undefined) {
+      this.navCtrl.setPages([{ page: 'specialties' }], { animate: true, animation: 'back' });
       return;
     }
     this.loadLinks(this.category.id, true);
+    this.loadFavs();
+
+
+  }
+
+  loadFavs() {
+    console.log('loadFavs');
+    this.fav.getItems(this.category).then((data) => {
+      console.log('loadFavs loaded!', data);
+      this.favs = data;
+    }).catch(err => {
+      console.log('loadFavs err', err);
+    })
+  }
+
+  isFav(link) {
+    return this.favs.find(fav => fav.id === link.id)
+  }
+
+  addFav(link) {
+    this.fav.addItem(link, this.category).then((res) => {
+      console.log(res);
+      this.loadFavs();
+    })
+  }
+
+  removeFav(link) {
+    this.fav.removeItem(link, this.category).then((res) => {
+      console.log(res);
+      this.loadFavs();
+    })
   }
 
   loadLinks(categorySlug, flush?, infiniteScroll?: InfiniteScroll) {
@@ -61,7 +95,7 @@ export class LinksPage {
     })
   }
 
-  scrollTop(){
+  scrollTop() {
     console.log('scrollTop()')
     this.content.scrollToTop(500);
   }
@@ -73,11 +107,11 @@ export class LinksPage {
 
   }
 
-  openExternal(url){
+  openExternal(url) {
     this.openUrl.open(url);
   }
 
-  share(url, title, description){
+  share(url, title, description) {
     this.openUrl.share(url, title, description);
   }
 

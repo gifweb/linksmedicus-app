@@ -4,7 +4,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      {{category?.name}}
+      Favorites
     </ion-title>
     <button right ion-button menuToggle="right">
       <ion-icon name="search"></ion-icon>
@@ -14,10 +14,18 @@
 
 <ion-content #content class="links-content">
 
-  <div padding text-center *ngIf="specialtiesLoading || linksLoading">
+  <div padding text-center *ngIf="favsLoading">
     <ion-spinner name="crescent"></ion-spinner>
   </div>
-  <ion-card *ngFor="let article of links">
+  <ion-card text-center *ngIf="!favsLoading && favs?.length <= 0">
+    <ion-card-header>
+     No favorites
+    </ion-card-header>
+    <ion-card-content>
+        <p >You do not have favorite links yet.</p>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngFor="let article of favs">
     <ion-card-header (click)="openExternal(article.url)" text-wrap [innerHTML]="article.title"></ion-card-header>
     <ion-card-content>
       <p (click)="openExternal(article.url)" text-wrap [innerHTML]="article?.desc"></p>
@@ -44,7 +52,5 @@
 
     </ion-row>
   </ion-card>
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+
 </ion-content>

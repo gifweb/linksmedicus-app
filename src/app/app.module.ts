@@ -15,12 +15,15 @@ import { Deeplinks } from '@ionic-native/deeplinks';
 import { OneSignal } from '@ionic-native/onesignal';
 import { HeaderColor } from '@ionic-native/header-color';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { SQLite } from '@ionic-native/sqlite';
 
 //Providers
 import { WpProvider } from '../providers/wp/wp';
 import { OpenUrlProvider } from '../providers/open-url/open-url';
 import { ComponentsModule } from '../components/components.module';
 import { GuidelinesPopoverPage } from '../pages/guidelines/guideline.popover';
+import { FavProvider } from '../providers/fav/fav';
+import { LocalDbProvider } from '../providers/local-db/local-db';
 
 @NgModule({
   declarations: [
@@ -48,9 +51,12 @@ import { GuidelinesPopoverPage } from '../pages/guidelines/guideline.popover';
     OneSignal,
     HeaderColor,
     SocialSharing,
+    SQLite,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     WpProvider,
     OpenUrlProvider,
+    FavProvider,
+    LocalDbProvider,
   ]
 })
 export class AppModule { }
