@@ -16,7 +16,7 @@ import { OneSignal } from '@ionic-native/onesignal';
 import { HeaderColor } from '@ionic-native/header-color';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { SQLite } from '@ionic-native/sqlite';
-
+import { Keyboard } from '@ionic-native/keyboard';
 //Providers
 import { WpProvider } from '../providers/wp/wp';
 import { OpenUrlProvider } from '../providers/open-url/open-url';
@@ -52,6 +52,7 @@ import { LocalDbProvider } from '../providers/local-db/local-db';
     HeaderColor,
     SocialSharing,
     SQLite,
+    Keyboard,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     WpProvider,
     OpenUrlProvider,

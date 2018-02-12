@@ -42,7 +42,7 @@ export class OpenUrlProvider {
     }
 
     if (this.platform.is('cordova')) {
-      return this.socialSharing.share(description, title, url).then(() => {
+      return this.socialSharing.share(description, title, null, url).then(() => {
         
       })
     }

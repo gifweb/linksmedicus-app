@@ -40,25 +40,5 @@
 
 </ion-menu>
 
-<ion-menu [content]="content" side="right" id="menu2">
-
-
-  <ion-content class="menu-content">
-    <ion-list>
-      <ion-item>
-        <ion-label stacked>Search Database</ion-label>
-        <ion-select [(ngModel)]="selectedSearch">
-          <ion-option selected [value]="''">Links Medicus</ion-option>
-          <ion-option *ngFor="let search of searches" [value]="search">{{search.title}}</ion-option>
-        </ion-select>
-      </ion-item>
-      <form (submit)="search()">
-        <ion-searchbar placeholder="Medical Search" [ngModelOptions]="{standalone: true}" [(ngModel)]="searchInput"></ion-searchbar>
-      </form>
-    </ion-list>
-  </ion-content>
-
-</ion-menu>
-
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" [rootParams]="rootParams" #content swipeBackEnabled="false"></ion-nav>

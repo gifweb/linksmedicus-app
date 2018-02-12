@@ -19,23 +19,17 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
-  searches: any[];
-  searchInput: '';
-  selectedSearch: any = "";
 
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    private wp: WpProvider,
-    private openUrl: OpenUrlProvider,
     private deeplinks: Deeplinks,
     private oneSignal: OneSignal,
     private headerColor: HeaderColor,
   ) {
     this.initializeApp();
 
-    this.loadSearch();
   }
 
   initializeApp() {
@@ -77,35 +71,8 @@ export class MyApp {
     });
   }
 
-  loadSearch() {
-    this.wp.getSearch().subscribe((res) => {
-      this.searches = res;
-    })
-  }
-
   openPage(page, params?) {
     this.nav.setRoot(page, params);
   }
 
-  search() {
-    console.log('search!', );
-
-    if (this.selectedSearch === '') {
-      this.openSearch();
-    } else {
-      const newLink = (this.selectedSearch.url).trim().replace('$palavra', this.searchInput.trim()).replace('$palavra', this.searchInput.trim()).replace('$palavra', this.searchInput.trim());
-      this.openExternal(newLink);
-    }
-
-  }
-
-  openSearch() {
-    console.log('internal search', this.searchInput);
-    this.openExternal('https://linksmedicus.com/searching/?q=' + this.searchInput.trim())
-  }
-
-  openExternal(url) {
-    console.log('openExternal', url)
-    this.openUrl.open(url);
-  }
 }

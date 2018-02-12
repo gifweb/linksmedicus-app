@@ -225,7 +225,8 @@ export class WpProvider {
       "posts?per_page=5" +
       "&categories=" +
       category +
-      "&orderby=date" +
+      "&orderby=menu_order" +
+      "&order=asc" +
       "&page=" +
       page
     )
