@@ -129,9 +129,30 @@ function my_prefix_add_rest_orderby_params( $params ) {
 }
 
 add_filter('rest_endpoints', function ($routes) {
-	if (!($route =& $routes['/wp/v2/guidelines'])) {
+
+	foreach (['guidelines', 'search'] as $type) {
+		if (!($route =& $routes['/wp/v2/' . $type])) {
+			continue;
+		}
+
+		// Allow ordering by my meta value
+		$route[0]['args']['orderby']['enum'][] = 'menu_order';
+
+		// Allow only the meta keys that I want
+		$route[0]['args']['meta_key'] = array(
+			'description'       => 'The meta key to query.',
+			'type'              => 'string',
+			'enum'              => ['menu_order',],
+			'validate_callback' => 'rest_validate_request_arg',
+		);
+	}
+
+	return $routes;
+
+	/*if (!($route =& $routes['/wp/v2/guidelines']) && !($route =& $routes['/wp/v2/search'])) {
 		return $routes;
 	}
+	//var_dump($route[0]['args']['orderby']['enum']);
 	$route[0]['args']['orderby']['enum'][] = 'menu_order';
     $route[0]['args']['meta_key'] = array(
       'description'       => 'The meta key to query.',
@@ -139,5 +160,7 @@ add_filter('rest_endpoints', function ($routes) {
       'enum'              => ['menu_order'],
       'validate_callback' => 'rest_validate_request_arg',
     );
-	return $routes;
+	//var_dump($route[0]['args']['orderby']['enum']);
+	return $routes;*/
+	
 });

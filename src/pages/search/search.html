@@ -2,8 +2,9 @@
   <ion-navbar color="primary">
     <ion-title>Search</ion-title>
     <ion-buttons end>
-      <ion-select [selectOptions]="{ title: 'Search Database'}" name="selectedSearch" [(ngModel)]="selectedSearch">
-        <ion-option selected [value]="''">Links Medicus</ion-option>
+      <ion-spinner *ngIf="searches === undefined" name="crescent" color="white"></ion-spinner>
+      <ion-select placeholder="Select database" *ngIf="searches !== undefined" [selectOptions]="{ title: 'Search Database'}" name="selectedSearch" [(ngModel)]="selectedSearch">
+        <!--ion-option selected [value]="''">Links Medicus</ion-option-->
         <ion-option *ngFor="let search of searches" [value]="search">{{search.title}}</ion-option>
       </ion-select>
     </ion-buttons>

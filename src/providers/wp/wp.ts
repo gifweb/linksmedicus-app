@@ -96,7 +96,7 @@ export class WpProvider {
 
 
   getSearch() {
-    return this.http.get(Config.WORDPRESS_REST_API_URL + "search?per_page=100")
+    return this.http.get(Config.WORDPRESS_REST_API_URL + "search?per_page=100&orderby=menu_order&order=asc")
       .map(res => res.json())
       .map(data => data.map(item => {
         return {

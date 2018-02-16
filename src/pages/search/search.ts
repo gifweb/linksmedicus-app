@@ -26,17 +26,22 @@ export class SearchPage {
   loadSearch() {
     this.wp.getSearch().subscribe((res) => {
       this.searches = res;
+      this.selectedSearch = res[0];
     })
   }
 
 
   search() {
-    console.log('search!', );
+    console.log('search!', this.selectedSearch);
 
     if (this.selectedSearch === '') {
       this.openSearch();
     } else {
-      const newLink = (this.selectedSearch.url).trim().replace('$palavra', this.searchInput.trim()).replace('$palavra', this.searchInput.trim()).replace('$palavra', this.searchInput.trim());
+      const searchInput = this.searchInput.trim().replace(/ /g,"+");
+      const newLink = (this.selectedSearch.url).trim()
+      .replace('$palavra', searchInput)
+      .replace('$palavra', searchInput)
+      .replace('$palavra', searchInput);
       this.openExternal(newLink);
     }
 
