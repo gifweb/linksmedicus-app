@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.linksmedicus.app" version="6.0.7" versionCode="60007" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.linksmedicus.app" version="6.0.8" versionCode="60008" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>LinksMedicus</name>
     <description>Free Medical Education Resources.</description>
     <author email="leoruhland@gmail.com" href="https://github.com/leoruhland">Leonardo Ruhland</author>
@@ -24,6 +24,7 @@
     <preference name="SplashScreenDelay" value="10000" />
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="StatusBarBackgroundColor" value="#0e4b5f" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
     <platform name="android">
         <allow-intent href="market:*" />
         <preference name="AndroidLaunchMode" value="singleTask" />
@@ -107,7 +108,6 @@
         <variable name="DEEPLINK_5_HOST" value=" " />
     </plugin>
     <plugin name="onesignal-cordova-plugin" spec="~2.2.5" />
-    <plugin name="cordova-plugin-statusbar" spec="~2.4.1" />
     <plugin name="cordova-plugin-ionic-webview" spec="~1.1.16" />
     <plugin name="cordova-plugin-headercolor" spec="~1.0" />
     <plugin name="cordova-plugin-browsertab" spec="~0.2.0" />
@@ -115,4 +115,5 @@
     <plugin name="cordova-plugin-x-socialsharing" spec="~5.2.1" />
     <plugin name="cordova-sqlite-storage" spec="~2.2.0" />
     <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
+    <plugin name="cordova-plugin-statusbar" spec="https://github.com/apache/cordova-plugin-statusbar" />
 </widget>
