@@ -24,6 +24,7 @@ import { ComponentsModule } from '../components/components.module';
 import { GuidelinesPopoverPage } from '../pages/guidelines/guideline.popover';
 import { FavProvider } from '../providers/fav/fav';
 import { LocalDbProvider } from '../providers/local-db/local-db';
+import { Firebase } from '@ionic-native/firebase';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { LocalDbProvider } from '../providers/local-db/local-db';
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule,
+    FormsModule, 
     IonicModule.forRoot(MyApp),
     ComponentsModule,
   ],
@@ -53,6 +54,7 @@ import { LocalDbProvider } from '../providers/local-db/local-db';
     SocialSharing,
     SQLite,
     Keyboard,
+    Firebase,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     WpProvider,
     OpenUrlProvider,

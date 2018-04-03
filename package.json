@@ -23,6 +23,7 @@
     "@ionic-native/browser-tab": "^4.4.2",
     "@ionic-native/core": "3.12.1",
     "@ionic-native/deeplinks": "^4.5.3",
+    "@ionic-native/firebase": "^4.5.3",
     "@ionic-native/header-color": "^4.5.3",
     "@ionic-native/keyboard": "^4.5.3",
     "@ionic-native/onesignal": "^4.5.3",

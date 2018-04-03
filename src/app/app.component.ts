@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, App } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { WpProvider } from '../providers/wp/wp';
@@ -7,6 +7,7 @@ import { OpenUrlProvider } from '../providers/open-url/open-url';
 import { Deeplinks } from '@ionic-native/deeplinks';
 import { OneSignal } from '@ionic-native/onesignal';
 import { HeaderColor } from '@ionic-native/header-color';
+import { Firebase } from '@ionic-native/firebase';
 
 @Component({
   templateUrl: 'app.html'
@@ -27,10 +28,14 @@ export class MyApp {
     private deeplinks: Deeplinks,
     private oneSignal: OneSignal,
     private headerColor: HeaderColor,
+    private app: App,
+    private firebase: Firebase,
   ) {
     this.initializeApp();
 
   }
+
+
 
   initializeApp() {
     this.platform.ready().then(() => {
@@ -40,6 +45,7 @@ export class MyApp {
         this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
         this.oneSignal.handleNotificationReceived().subscribe((res) => {
           console.log('handleNotificationReceived', res);
+          this.nav.setRoot('news');
         });
         this.oneSignal.handleNotificationOpened().subscribe((res) => {
           console.log('handleNotificationOpened', res);
@@ -55,8 +61,7 @@ export class MyApp {
           '/about-us': { target: 'about' },
         }).subscribe((match) => {
           console.log('Successfully matched route', match);
-          this.rootPage = match.$route.target;
-          this.rootParams = match.$args;
+          this.nav.setRoot(match.$route.target, match.$args);
         }, (nomatch) => {
           console.log('Got a deeplink that didn\'t match', nomatch);
         });
@@ -65,6 +70,15 @@ export class MyApp {
         this.statusBar.styleLightContent();
 
         this.splashScreen.hide();
+
+        this.app.viewDidEnter.subscribe((evt) => {
+          // evt.instance is the Ionic page component
+          console.log('evt', evt)
+          this.firebase.setScreenName(evt.name);
+          this.firebase.logEvent('page_view', { page: evt.name, data: evt.data })
+            .then((res: any) => console.log(res))
+            .catch((error: any) => console.error(error));
+        });
       }
 
 

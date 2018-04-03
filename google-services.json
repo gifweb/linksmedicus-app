@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "820733454346",
+    "firebase_url": "https://linksmedicus-6d39e.firebaseio.com",
+    "project_id": "linksmedicus-6d39e",
+    "storage_bucket": "linksmedicus-6d39e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820733454346:android:85cc83ee9fe85af0",
+        "android_client_info": {
+          "package_name": "com.linksmedicus.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "820733454346-s8ttojd7bnvct34mmjj9q83l5craq14i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBP3mbiWw5nPi-giswYn050Rpn-trZ88Cw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

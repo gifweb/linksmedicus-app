@@ -26,7 +26,7 @@ export class SearchPage {
   loadSearch() {
     this.wp.getSearch().subscribe((res) => {
       this.searches = res;
-      this.selectedSearch = res[0];
+      this.selectedSearch = '';
     })
   }
 
@@ -37,11 +37,11 @@ export class SearchPage {
     if (this.selectedSearch === '') {
       this.openSearch();
     } else {
-      const searchInput = this.searchInput.trim().replace(/ /g,"+");
+      const searchInput = this.searchInput.trim().replace(/ /g, "+");
       const newLink = (this.selectedSearch.url).trim()
-      .replace('$palavra', searchInput)
-      .replace('$palavra', searchInput)
-      .replace('$palavra', searchInput);
+        .replace('$palavra', searchInput)
+        .replace('$palavra', searchInput)
+        .replace('$palavra', searchInput);
       this.openExternal(newLink);
     }
 
@@ -49,7 +49,8 @@ export class SearchPage {
 
   openSearch() {
     console.log('internal search', this.searchInput);
-    this.openExternal('https://linksmedicus.com/searching/?q=' + this.searchInput.trim())
+    this.navCtrl.push('SearchResultsPage', { s: this.searchInput.trim() })
+    //this.openExternal('https://linksmedicus.com/searching/?q=' + this.searchInput.trim())
   }
 
   openExternal(url) {

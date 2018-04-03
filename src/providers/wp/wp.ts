@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import * as Config from '../../app/app.config';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -108,6 +108,19 @@ export class WpProvider {
       }));
   }
 
+  search(s: string) {
+    return this.http.get(Config.WORDPRESS_REST_API_BASE + "search/all?s=" + s)
+      .map(res => res.json());
+      /*.map(data => data.map(item => {
+        return {
+          id: item.id,
+          title: item.title.rendered,
+          url: item.url,
+          slug: item.slug,
+        };
+      }));*/
+  }
+
   getGuideline() {
     return this.http.get(Config.WORDPRESS_REST_API_URL + "guideline?per_page=100")
       .map(res => res.json())
@@ -168,7 +181,7 @@ export class WpProvider {
 
   paddinZeros(str, size) {
     var s = String(str);
-    while (s.length < (size || 2)) {s = "0" + s;}
+    while (s.length < (size || 2)) { s = "0" + s; }
     return s;
   }
 

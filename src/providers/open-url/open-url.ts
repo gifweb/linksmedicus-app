@@ -3,6 +3,7 @@ import { BrowserTab } from '@ionic-native/browser-tab';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { Platform } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { Firebase } from '@ionic-native/firebase';
 
 @Injectable()
 export class OpenUrlProvider {
@@ -12,11 +13,18 @@ export class OpenUrlProvider {
     private browserTab: BrowserTab,
     private themeableBrowser: ThemeableBrowser,
     private socialSharing: SocialSharing,
+    private firebase: Firebase
   ) {
 
   }
 
   open(url: string) {
+
+    this.firebase.logEvent('open_url', { url }).then((data) => {
+      console.log('log event open_url', data, { url })
+    }).catch((err) => {
+      console.log('log event err', err)
+    })
 
     if (url.substr(0, 4) !== 'http') {
       url = 'http://' + url;
@@ -37,19 +45,31 @@ export class OpenUrlProvider {
 
   share(url: string, title: string, description: string) {
 
+    this.firebase.logEvent('share', { url, title, description }).then((data) => {
+      console.log('log event share', data, { url, title, description })
+    }).catch((err) => {
+      console.log('log event err', err)
+    })
+
     if (url.substr(0, 4) !== 'http') {
       url = 'http://' + url;
     }
 
     if (this.platform.is('cordova')) {
       return this.socialSharing.share(description, title, null, url).then(() => {
-        
+
       })
     }
   }
 
   private openBrowserTab(url: string) {
-    this.browserTab.openUrl(url, { toolbarColor: "#156e8b" });
+    this.browserTab.isAvailable().then((result) => {
+      if (!result) {
+        this.openThemeable(url);
+      } else {
+        this.browserTab.openUrl(url, { toolbarColor: "#156e8b" });
+      }
+    })
   }
 
   private openThemeable(url: string) {

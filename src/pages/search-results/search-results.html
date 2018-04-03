@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Search Results</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content #content class="search-content">
+
+  <div padding text-center *ngIf="isLoading">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+  <ion-card *ngFor="let article of results">
+    <ion-card-header text-wrap [innerHTML]="article.title"></ion-card-header>
+    <ion-card-content>
+      <h4>{{article?.date | date: 'd MMM,y'}}</h4>
+      <p text-wrap [innerHTML]="article.content"></p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
