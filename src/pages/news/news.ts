@@ -4,9 +4,11 @@ import { WpProvider } from '../../providers/wp/wp';
 import { LoadingController } from 'ionic-angular';
 import { InfiniteScroll } from 'ionic-angular';
 import { OpenUrlProvider } from '../../providers/open-url/open-url';
+import { GtranslateProvider } from '../../providers/gtranslate/gtranslate';
 
 @IonicPage({
   name: 'news',
+  segment: 'news/:specialtie/:title',
   priority: 'high'
 })
 @Component({
@@ -22,6 +24,7 @@ export class NewsPage {
   newsPage: number = 1;
 
   archive: any = false;
+  title: string = '';
 
   _specialtie: any;
   get specialtie(): number {
@@ -40,10 +43,12 @@ export class NewsPage {
     private wp: WpProvider,
     private loadingCtrl: LoadingController,
     private openUrl: OpenUrlProvider,
+    public gtp: GtranslateProvider,
   ) {
     //this.loadSpecialties();
     this.archive = (this.navParams.get('archive')) ? this.navParams.get('archive') : false;
-    this._specialtie = (this.navParams.get('specialtie')) ? this.navParams.get('specialtie') : 177;
+    this.specialtie = (this.navParams.get('specialtie')) ? this.navParams.get('specialtie') : 177;
+    this.title = (this.navParams.get('title')) ? this.navParams.get('title') : '';
   }
 
   /*loadSpecialties() {
@@ -56,7 +61,12 @@ export class NewsPage {
     })
   }*/
 
+  openArticle(article) {
+    this.navCtrl.push('article', { article })
+  }
+
   loadNews(specialtie, flush?, infiniteScroll?: InfiniteScroll) {
+    console.log('loadNews')
     if (flush) {
       this.news = [];
     }
@@ -79,7 +89,7 @@ export class NewsPage {
     })
   }
 
-  scrollTop(){
+  scrollTop() {
     console.log('scrollTop()')
     this.content.scrollToTop(500);
   }
@@ -110,7 +120,7 @@ export class NewsPage {
     }, 500);
   }
 
-  changeTopic(evt){
+  changeTopic(evt) {
     this.specialtie = evt;
   }
 

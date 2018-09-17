@@ -1,0 +1,30 @@
+<ion-header>
+  <app-header action="share" (shareAction)="share()"></app-header>
+</ion-header>
+
+<ion-content #content>
+
+  <ion-grid no-padding border-bottom>
+    <ion-row align-items-center>
+      <ion-col>
+        <open-access></open-access>
+      </ion-col>
+      <ion-col col-auto text-right>
+        <gtranslate-select></gtranslate-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div padding text-center *ngIf="!article">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <div padding *ngIf="article">
+    <h2 [innerHTML]="article?.title | gtranslate:gtp.last"></h2>
+    <p class="date">{{ article?.date | date:'d MMM, yyy' }} | {{ article?.date | date:'HH:mm' }}h | UTC</p>
+    <div class="html-content" [innerHTML]="article?.content | gtranslate:gtp.last"></div>
+  </div>
+
+
+
+</ion-content>

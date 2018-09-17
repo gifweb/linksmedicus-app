@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.linksmedicus.app" version="6.0.10" versionCode="60010" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.linksmedicus.app" version="6.1.0" versionCode="60100" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>LinksMedicus</name>
     <description>Free Medical Education Resources.</description>
     <author email="leoruhland@gmail.com" href="https://github.com/leoruhland">Leonardo Ruhland</author>
@@ -83,11 +83,15 @@
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
         <icon height="1024" src="resources/ios/icon/icon-1024.png" width="1024" />
     </platform>
-    <plugin name="cordova-plugin-whitelist" spec="1.3.1" />
-    <plugin name="cordova-plugin-device" spec="1.1.4" />
-    <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
+    <engine name="android" spec="6.3.0" />
+    <engine name="ios" spec="~4.3.1" />
+    <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
     <plugin name="cordova-plugin-themeablebrowser" spec="^0.2.17" />
-    <engine name="android" spec="~6.3.0" />
+    <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
+    <plugin name="cordova-plugin-statusbar" spec="https://github.com/apache/cordova-plugin-statusbar" />
+    <plugin name="cordova-plugin-device" spec="^1.1.4" />
+    <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
     <plugin name="com.ingage.themeablebrowserimages" spec="https://github.com/leoruhland/cordova-plugin-themeablebrowserimages-light" />
     <plugin name="ionic-plugin-deeplinks" spec="~1.0.15">
         <variable name="URL_SCHEME" value="linksmedicus" />
@@ -110,11 +114,7 @@
     <plugin name="onesignal-cordova-plugin" spec="~2.2.5" />
     <plugin name="cordova-plugin-ionic-webview" spec="~1.1.16" />
     <plugin name="cordova-plugin-headercolor" spec="~1.0" />
-    <plugin name="cordova-plugin-browsertab" spec="~0.2.0" />
-    <engine name="ios" spec="~4.3.1" />
     <plugin name="cordova-plugin-x-socialsharing" spec="~5.2.1" />
     <plugin name="cordova-sqlite-storage" spec="~2.2.0" />
-    <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
-    <plugin name="cordova-plugin-statusbar" spec="https://github.com/apache/cordova-plugin-statusbar" />
     <plugin name="cordova-plugin-firebase" spec="~0.1.25" />
 </widget>

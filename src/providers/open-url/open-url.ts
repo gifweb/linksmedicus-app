@@ -45,20 +45,23 @@ export class OpenUrlProvider {
 
   share(url: string, title: string, description: string) {
 
-    this.firebase.logEvent('share', { url, title, description }).then((data) => {
-      console.log('log event share', data, { url, title, description })
-    }).catch((err) => {
-      console.log('log event err', err)
-    })
+
 
     if (url.substr(0, 4) !== 'http') {
       url = 'http://' + url;
     }
 
     if (this.platform.is('cordova')) {
+      this.firebase.logEvent('share', { url, title, description }).then((data) => {
+        console.log('log event share', data, { url, title, description })
+      }).catch((err) => {
+        console.log('log event err', err)
+      })
       return this.socialSharing.share(description, title, null, url).then(() => {
 
       })
+    } else {
+      console.log('browser share!', url, title)
     }
   }
 
@@ -67,14 +70,15 @@ export class OpenUrlProvider {
       if (!result) {
         this.openThemeable(url);
       } else {
-        this.browserTab.openUrl(url, { toolbarColor: "#156e8b" });
+        //this.browserTab.openUrl(url, { toolbarColor: "#156e8b" });
+        this.browserTab.openUrl(url);
       }
     })
   }
 
   private openThemeable(url: string) {
     const options: ThemeableBrowserOptions = {
-      hidden: 'true',
+      hidden: true,
       hardwareback: 'true',
       statusbar: {
         color: '#00156e8b'

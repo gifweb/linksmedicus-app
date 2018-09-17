@@ -1,0 +1,35 @@
+gtranslate-select {
+    display: inline-block;
+    text-align: right;
+    padding: 4px;
+    span {
+        display: inline-block;
+    }
+    .item {
+        padding: 0px;
+        margin-bottom: 2px;
+        text-transform: capitalize;
+        min-height:2rem;
+    }
+    ion-select.select {
+        width: 100%;
+        max-width: none;
+        padding: 4px;
+        min-height: 1.2rem;
+    }
+    a {
+        text-decoration: none;
+        >span {
+            line-height: 12px;
+            vertical-align: top;
+        }
+    }
+    >div>span {
+        line-height: 12px;
+        vertical-align: top;
+    }
+    .select-placeholder {
+        text-transform: none;
+    }
+    
+}

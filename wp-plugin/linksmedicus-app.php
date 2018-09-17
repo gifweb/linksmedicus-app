@@ -62,6 +62,24 @@ function add_custom_data()
         ),
     ));
 
+    register_rest_field('news', 'source', array(
+        'get_callback' => 'get_news_source',
+        'schema' => array(
+            'description' => 'Fonte',
+            'type' => 'string',
+            'context' => array('view', 'edit'),
+        ),
+    ));
+
+    register_rest_field('news', 'color', array(
+        'get_callback' => 'get_news_color',
+        'schema' => array(
+            'description' => 'Cor',
+            'type' => 'string',
+            'context' => array('view', 'edit'),
+        ),
+    ));
+
     register_rest_field('guidelines', 'guidelines', array(
         'get_callback' => 'get_guideline_data',
         'schema' => array(
@@ -79,6 +97,20 @@ function add_custom_data()
             'context' => array('view', 'edit'),
         ),
     ));
+}
+
+function get_news_source($object, $field_name, $request)
+{
+    if (function_exists('get_field')) {
+        return get_field('fonte_revista', $object['id']);
+    }
+}
+
+function get_news_color($object, $field_name, $request)
+{
+    if (function_exists('get_field')) {
+        return get_field('color_title_latest', $object['id']);
+    }
 }
 
 function get_searchlink_data($object, $field_name, $request)

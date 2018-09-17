@@ -1,0 +1,35 @@
+<ion-header>
+  <app-header></app-header>
+</ion-header>
+
+<ion-content #content class="posts-content">
+
+  <ion-grid no-padding border-bottom>
+    <ion-row align-items-center>
+      <ion-col>
+        <open-access></open-access>
+      </ion-col>
+      <ion-col col-auto text-right>
+        <gtranslate-select></gtranslate-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!--select-topic [hidden]="archive" [specialtie]="specialtie" (onSelectTopic)="changeTopic($event)"></select-topic-->
+  <div padding>
+    <div text-center *ngIf="specialtiesLoading || postsLoading">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+    <h1 text-center *ngIf="posts && posts.length > 0" [innerHTML]="title | gtranslate:gtp.last"></h1>
+    <div *ngFor="let article of posts" tappable (click)="openArticle(article)">
+      <h2 text-wrap [innerHTML]="article.title | gtranslate:gtp.last"></h2>
+      <p class="date">{{ article?.date | date:'d MMM, yyy' }} | {{ article?.date | date:'HH:mm' }}h | UTC</p>
+      <div class="html-content" [innerHTML]="article?.content | gtranslate:gtp.last"></div>
+      <hr />
+    </div>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+
+</ion-content>

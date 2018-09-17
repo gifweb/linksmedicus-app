@@ -1,0 +1,26 @@
+page-article {
+    h2 {
+        color: #535353;
+        font-size: 2.8rem;
+        font-weight: 300;
+
+    }
+    a {
+        color: #2969b0;
+        font-weight: 500;
+        text-decoration: none;
+    }
+    p.date {
+        color: #8c8c8c;
+        font-size:1.3rem;
+        margin-top:0;
+        margin-bottom:25px;
+        font-weight: 500;
+
+    }
+    .html-content {
+        font-size:1.6rem;
+        line-height: 1.8;
+        text-align: justify;
+    }
+}

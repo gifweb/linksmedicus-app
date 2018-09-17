@@ -1,41 +1,93 @@
-<ion-menu [content]="content" side="left" id="menu1">
+<ion-menu #menu [content]="content" side="left" id="menu1">
+  <ion-header>
+    <ion-toolbar color="light">
+      <ion-buttons left>
+        <button ion-button clear icon-only menuClose>
+          <ion-icon name="arrow-back"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>
+        <div>
+          <img src="assets/img/logo-novo.png" class="header-logo" />
+        </div>
+      </ion-title>
 
+    </ion-toolbar>
+  </ion-header>
 
   <ion-content class="menu-content">
-    <!--ion-toolbar color="light">
-      <img src="assets/img/logo.png" style="padding:4px" />
-    </ion-toolba-->
-    <ion-list class="list-menu">
-      <button menuClose ion-item (click)="openPage('news')" detail-push>
-        NEWS - TOP10 / ALL SPECIALTIES
-      </button>
-      <button menuClose ion-item (click)="openPage('specialties')" detail-push>
-        LINKS - SPECIALTIES
-      </button>
-      <button menuClose ion-item (click)="openPage('specialties', {generalTopics: true})" detail-push>
-        LINKS - GENERAL TOPICS
-      </button>
-      <button menuClose ion-item (click)="openPage('library')" detail-push>
-        LIBRARY – GUIDELINES & REPORTS
-      </button>
-      <button menuClose ion-item (click)="openPage('archive')" detail-push>
-        ARCHIVES - ALL POSTS
-      </button> 
-      
-      <button menuClose ion-item (click)="openPage('favs')" detail-push>
-        FAVORITES
-      </button> 
-      <!--button menuClose ion-item detail-push>
-        RSS Feed
-      </button-->
-      <button menuClose ion-item (click)="openPage('about')" detail-push>
-        ABOUT US
-      </button>
-      <br clear="all" />
-      <div text-center padding>
-        <img src="assets/img/logo-final.png" style="width:70%;" />
-      </div>
-    </ion-list>
+
+    <ion-slides #slides>
+
+      <ion-slide>
+        <ion-list no-lines class="list-menu">
+          <button menuClose color="primary" ion-item (click)="openPage('home')" detail-none>
+            {{'TOP 10' | gtranslate:gtp.last }}
+          </button>
+
+          <button color="secondary" icon-right ion-item (click)="openMenu('news')" detail-none>
+            {{'NEWS' | gtranslate:gtp.last }}
+            <ion-icon item-right name="ios-arrow-forward"></ion-icon>
+          </button>
+
+          <button color="ternary" icon-right ion-item (click)="openMenu('database')" detail-none>
+            {{'DATABASE' | gtranslate:gtp.last }}
+            <ion-icon item-right name="ios-arrow-forward"></ion-icon>
+          </button>
+
+          <button color="quaternary" icon-right ion-item (click)="openMenu('guidelines')" detail-none>
+            {{'GUIDELINES' | gtranslate:gtp.last }}
+            <ion-icon item-right name="ios-arrow-forward"></ion-icon>
+          </button>
+
+          <button color="primary" menuClose ion-item (click)="openPage('archive')" detail-none>
+            {{'ARCHIVES' | gtranslate:gtp.last }}
+          </button>
+
+          <button color="primary" menuClose ion-item (click)="openPage('about')" detail-none>
+            {{'Free E-mail Updates' | gtranslate:gtp.last }}
+          </button>
+
+          <button color="primary" menuClose ion-item (click)="openUrl('https://play.google.com/store/apps/details?id=com.linksmedicus.app&hl=pt_BR')"
+            detail-none>
+            {{'App Android' | gtranslate:gtp.last }}
+          </button>
+
+          <button color="primary" menuClose ion-item (click)="openUrl('https://itunes.apple.com/us/app/links-medicus/id1144951107?l=pt&ls=1&mt=8')"
+            detail-none>
+            {{'App Apple' | gtranslate:gtp.last }}
+          </button>
+        </ion-list>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-list no-lines class="list-menu" [ngClass]="'list-menu-' + openedMenu">
+          <button ion-item (click)="closeMenu()" icon-only float-right detail-none>
+            <ion-icon name="close" item-right></ion-icon>
+          </button>
+          <ng-container *ngIf="openedMenu && submenus && openedMenu !== 'database'">
+            <button menuClose *ngFor="let item of submenus[openedMenu]" ion-item (click)="openPage('news', {specialtie: item.id, title: item.name})"
+              detail-none>
+              <span [innerHTML]="item.name | gtranslate:gtp.last"></span>
+            </button>
+          </ng-container>
+          <ng-container *ngIf="openedMenu && submenus && openedMenu === 'database'">
+            <ion-item-divider>{{'Specialties Homepage' | gtranslate:gtp.last }}</ion-item-divider>
+            <button menuClose *ngFor="let item of submenus?.database[0]" ion-item (click)="openPage('posts', {specialtie: item.id, title: item.name})"
+              detail-none>
+              <span [innerHTML]="item.name | gtranslate:gtp.last"></span>
+            </button>
+            <ion-item-divider>{{'General Topics' | gtranslate:gtp.last }}</ion-item-divider>
+            <button menuClose *ngFor="let item of submenus?.database[1]" ion-item (click)="openPage('posts', {specialtie: item.id, title: item.name})"
+              detail-none>
+              <span [innerHTML]="item.name | gtranslate:gtp.last"></span>
+            </button>
+          </ng-container>
+        </ion-list>
+      </ion-slide>
+
+    </ion-slides>
+
   </ion-content>
 
 </ion-menu>

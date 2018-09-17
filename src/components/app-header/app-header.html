@@ -1,18 +1,21 @@
 <ion-navbar color="light">
-  <ion-buttons left>
-    <button ion-button menuToggle="left">
+  <ion-buttons class="buttons-menu" left>
+    <button class="button-menu" ion-button menuToggle="left">
       <ion-icon name="menu"></ion-icon>
     </button>
   </ion-buttons>
 
   <ion-title>
     <div (click)="scrollTop()">
-      <img src="assets/img/logo-final.png" class="header-logo" />
+      <img src="assets/img/logo-novo.png" class="header-logo" />
     </div>
   </ion-title>
   <ion-buttons right>
-    <button ion-button icon-only (click)="toggleRightMenu()">
+    <button color="primary" *ngIf="action === 'search'" ion-button icon-only (click)="toggleRightMenu()">
       <ion-icon name="search"></ion-icon>
+    </button>
+    <button color="primary" *ngIf="action === 'share'" ion-button icon-only (click)="share()">
+      <ion-icon name="share"></ion-icon>
     </button>
   </ion-buttons>
 

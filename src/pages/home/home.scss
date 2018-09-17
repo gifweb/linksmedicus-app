@@ -1,0 +1,32 @@
+page-home {
+    .segment .segment-button {
+        border-width: 3px;
+    }
+    span {
+        display: inline-block;
+    }
+    .top10-title {
+        margin: 0;
+        display: inline-block;
+        color: #036cb3;
+        font-size: 16px;
+    }
+    .top10-author {
+        display: inline-block;
+        margin: 0;
+        font-style: italic;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+    .top10-number {
+        float: left;
+        font-weight: bold;
+        padding-top: 1px;
+        width: 24px;
+        padding-right:3px;
+        text-align: right;
+    }
+    .top10-texts {
+        margin-left: 24px;
+    }
+}

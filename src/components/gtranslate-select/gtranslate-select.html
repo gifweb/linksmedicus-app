@@ -1,0 +1,19 @@
+<div>
+
+  <ion-item no-lines>
+    <ion-select [selectOptions]="{title: 'Select the language' | gtranslate:gtp.last, 'cssClass':'gtselect' }" [placeholder]="'Select the language' | gtranslate:gtp.last"
+      [okText]="'Select' | gtranslate:gtp.last" [cancelText]="'Cancel' | gtranslate:gtp.last" [(ngModel)]="gtp.lang"
+      multiple="false">
+      <ion-option *ngFor="let language of languages" [value]="language">{{ language.name | gtranslate:gtp.last }}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <span style="font-size:12px;">{{ 'Powered by' | gtranslate:gtp.last }}</span>
+  <span style="white-space:nowrap">
+    <a class="goog-logo-link" href="https://translate.google.com" target="_blank">
+      <img src="https://www.gstatic.com/images/branding/googlelogo/1x/googlelogo_color_42x16dp.png" width="37px" height="14px"
+        style="padding-right: 3px" alt="Google Translator">
+      <span style="font-size:12px;">Translator</span>
+    </a>
+  </span>
+</div>

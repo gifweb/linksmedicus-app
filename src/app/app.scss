@@ -12,18 +12,44 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-.content {
-    background: color($colors, light);
-}
+.content {}
 
 .menu-content {
-    background: #efefef;
+    background: color($colors, primary);
+    .slides {
+        height: auto;
+        .list {
+            margin-bottom:0px;
+            .item-divider {
+                border-bottom:0;
+                .label {
+                    color: #036cb3;
+                }
+            }
+        }
+    }
     div>.list.list-menu {
+       
         .item {
-            background: color($colors, light);
-            color: color($colors, primary);
+            color: color($colors, light);
             font-weight: bold;
             border-radius: 0px;
+        }
+        .item[color=secondary] {
+            .label,
+            .icon {
+                color: #827756;
+            }
+        }
+        .item[color=ternary] {
+            .label, .icon {
+                color: #4f8073;
+            }
+        }
+        .item[color=quaternary] {
+            .label, .icon {
+                color: #44708e;
+            }
         }
         .item-md,
         .item-ios {
@@ -31,10 +57,35 @@
         }
         .label,
         .select-icon .select-icon-inner {
+            color: color($colors, light);
+        }
+        .item-inner {}
+    }
+    div>.list.list-menu-news {
+        .item {
+            background: color($colors, secondary);
+        }
+        .label,
+        .icon {
             color: color($colors, primary);
         }
-        .item-select {
-            border-bottom: 1px solid color($colors, primary);
+    }
+    div>.list.list-menu-database {
+        .item {
+            background: color($colors, ternary);
+        }
+        .label,
+        .icon {
+            color: color($colors, primary);
+        }
+    }
+    div>.list.list-menu-guidelines {
+        .item {
+            background: color($colors, quaternary);
+        }
+        .label,
+        .icon {
+            color: color($colors, primary);
         }
     }
 }
@@ -54,7 +105,6 @@
     white-space: initial;
 }
 
-
 .md {
     .header-logo {
         max-height: 44px;
@@ -64,7 +114,7 @@
     .bar-button-menutoggle,
     .back-button {
         min-width: 34px;
-        margin:0;
+        margin: 0;
         ion-icon {
             padding: 0 1px;
         }
@@ -79,5 +129,15 @@
         max-height: 35px;
         margin: 0 auto;
         display: block;
+    }
+}
+
+[border-bottom] {
+    border-bottom:1px solid #eee;
+}
+
+.gtselect {
+    .alert-radio-label {
+        text-transform: capitalize;
     }
 }

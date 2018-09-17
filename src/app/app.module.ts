@@ -25,6 +25,8 @@ import { GuidelinesPopoverPage } from '../pages/guidelines/guideline.popover';
 import { FavProvider } from '../providers/fav/fav';
 import { LocalDbProvider } from '../providers/local-db/local-db';
 import { Firebase } from '@ionic-native/firebase';
+import { GtranslateProvider } from '../providers/gtranslate/gtranslate';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { Firebase } from '@ionic-native/firebase';
     FormsModule, 
     IonicModule.forRoot(MyApp),
     ComponentsModule,
+    PipesModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -60,6 +63,7 @@ import { Firebase } from '@ionic-native/firebase';
     OpenUrlProvider,
     FavProvider,
     LocalDbProvider,
+    GtranslateProvider,
   ]
 })
 export class AppModule { }

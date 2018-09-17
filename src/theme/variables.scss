@@ -35,13 +35,14 @@ $item-md-detail-push-show: true;
 
 
 $colors: (
-  primary:    #156e8b,
-  secondary:  #eec345,
-  orange:   #f3954c,
+  primary:    #196d8e,
+  secondary:  #ffeaa7,
+  ternary:    #a1e0d0,
+  quaternary: #6ab9f0,
   danger:     #f53d3d,
   light:      #efefef,
-  medium:      lighten(#156e8b, 66%),
-  white:    #fffff4,
+  medium:      lighten(#196d8e, 66%),
+  white:    #ffffff,
 );
 
 

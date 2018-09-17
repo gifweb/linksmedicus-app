@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MenuController, NavController } from 'ionic-angular';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
+import {  NavController } from 'ionic-angular';
 
 @Component({
   selector: 'app-header',
@@ -7,18 +7,21 @@ import { MenuController, NavController } from 'ionic-angular';
 })
 export class AppHeaderComponent {
 
+  @Input() action: string = 'search';
+  @Output() shareAction = new EventEmitter();
+
   constructor(
-    private menuCtrl: MenuController,
     private navCtrl: NavController,
   ) {
-    console.log('Hello AppHeaderComponent Component');
+
   }
 
   toggleRightMenu() {
-    console.log('toggleRightMenu');
-    //this.menuCtrl.toggle('right');
     this.navCtrl.push('SearchPage');
   }
 
+  share() {
+    this.shareAction.emit();
+  }
 
 }

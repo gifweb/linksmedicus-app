@@ -4,14 +4,25 @@
 
 <ion-content>
 
-  <select-topic (onSelectTopic)="openNews($event)"></select-topic>
+  <ion-grid no-padding border-bottom>
+    <ion-row align-items-center>
+      <ion-col>
+        <open-access></open-access>
+      </ion-col>
+      <ion-col col-auto text-right>
+        <gtranslate-select></gtranslate-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!--select-topic (onSelectTopic)="openNews($event)"></select-topic-->
 
   <div padding text-center *ngIf="aboutLoading">
     <ion-spinner name="crescent"></ion-spinner>
   </div>
 
-  <div padding *ngIf="!(aboutLoading)">
-    <h2>{{about?.title}}</h2>
-    <div text-center [innerHTML]="about?.content"></div>
+  <div padding *ngIf="!(aboutLoading) && about">
+    <h2>{{about.title | gtranslate:gtp.last }}</h2>
+    <div text-center [innerHTML]="about.content | gtranslate:gtp.last"></div>
   </div>
 </ion-content>

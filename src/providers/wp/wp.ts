@@ -94,6 +94,25 @@ export class WpProvider {
       }));
   }
 
+  getSubMenuNews() {
+    return this.http.get(Config.WORDPRESS_REST_API_URL + "specialties?per_page=100&exclude=184,185")
+      .map(res => res.json())
+      .toPromise();
+  }
+
+  getSubMenuDatabase(num: number) {
+    const parent = num === 1 ? 5 : 28;
+    return this.http.get(Config.WORDPRESS_REST_API_URL + "categories?post_type=post&per_page=100&parent=" + parent)
+      .map(res => res.json())
+      .toPromise();
+  }
+
+  getSubMenuGuidelines() {
+    return this.http.get(Config.WORDPRESS_REST_API_URL + "specialties?per_page=100&exclude=184,185")
+      .map(res => res.json())
+      .toPromise();
+  }
+
 
   getSearch() {
     return this.http.get(Config.WORDPRESS_REST_API_URL + "search?per_page=100&orderby=menu_order&order=asc")
@@ -111,14 +130,14 @@ export class WpProvider {
   search(s: string) {
     return this.http.get(Config.WORDPRESS_REST_API_BASE + "search/all?s=" + s)
       .map(res => res.json());
-      /*.map(data => data.map(item => {
-        return {
-          id: item.id,
-          title: item.title.rendered,
-          url: item.url,
-          slug: item.slug,
-        };
-      }));*/
+    /*.map(data => data.map(item => {
+      return {
+        id: item.id,
+        title: item.title.rendered,
+        url: item.url,
+        slug: item.slug,
+      };
+    }));*/
   }
 
   getGuideline() {
@@ -185,6 +204,60 @@ export class WpProvider {
     return s;
   }
 
+  getTop10() {
+
+    let getNewsUrl = Config.WORDPRESS_REST_API_URL + "news?per_page=10";
+    const specialtie = 184;
+    if (specialtie) {
+      getNewsUrl += "&specialties=" + specialtie;
+    }
+
+    return this.http.get(
+      getNewsUrl
+    )
+      .map(res => res.json())
+      .map(data => data.map(item => {
+        const content = (item.content.rendered).replace(/href/g, 'target="_blank" href');
+        return {
+          id: item.id,
+          date: item.date,
+          title: item.title.rendered,
+          content: content,
+          link: item.link,
+          slug: item.slug,
+          color: item.color,
+          source: item.source,
+        };
+      }));
+  }
+
+  getLatest() {
+
+    let getNewsUrl = Config.WORDPRESS_REST_API_URL + "news?per_page=10";
+    const specialtie = 185;
+    if (specialtie) {
+      getNewsUrl += "&specialties=" + specialtie;
+    }
+
+    return this.http.get(
+      getNewsUrl
+    )
+      .map(res => res.json())
+      .map(data => data.map(item => {
+        const content = (item.content.rendered).replace(/href/g, 'target="_blank" href');
+        return {
+          id: item.id,
+          date: item.date,
+          title: item.title.rendered,
+          content: content,
+          link: item.link,
+          slug: item.slug,
+          color: item.color,
+          source: item.source,
+        };
+      }));
+  }
+
   getNews(specialtie, page?: number, archive?: any) {
     if (page === undefined) {
       page = 1;
@@ -210,8 +283,41 @@ export class WpProvider {
       getNewsUrl += "&page=" + page;
     }
 
+    return this.http.get(
+      getNewsUrl
+    )
+      .map(res => res.json())
+      .map(data => data.map(item => {
+        const content = (item.content.rendered).replace(/href/g, 'target="_blank" href');
+        return {
+          id: item.id,
+          date: item.date,
+          title: item.title.rendered,
+          content: content,
+          link: item.link,
+          slug: item.slug,
+        };
+      }));
+  }
 
-
+  getPosts(category, page?: number, archive?: any) {
+    if (page === undefined) {
+      page = 1;
+    }
+    console.log('getPosts archive:', archive);
+    let getNewsUrl = Config.WORDPRESS_REST_API_URL + "posts?per_page=5&orderby=menu_order&order=asc";
+    if (archive) {
+      const afterDate = archive.date[0] + '-' + this.paddinZeros(archive.date[1], 2) + '-' + this.paddinZeros(archive.date[2], 2) + 'T00:00:00'
+      const beforeDate = archive.date[0] + '-' + this.paddinZeros(archive.date[1], 2) + '-' + this.paddinZeros(archive.date[2], 2) + 'T23:59:59'
+      getNewsUrl += "&before=" + beforeDate + "&after=" + afterDate;
+    } else {
+      if (category) {
+        getNewsUrl += "&categories=" + category;
+      }
+    }
+    if (page) {
+      getNewsUrl += "&page=" + page;
+    }
     return this.http.get(
       getNewsUrl
     )

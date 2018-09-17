@@ -1,0 +1,55 @@
+<ion-header>
+  <app-header></app-header>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid no-padding border-bottom>
+    <ion-row align-items-center>
+      <ion-col>
+        <open-access></open-access>
+      </ion-col>
+      <ion-col col-auto text-right>
+        <gtranslate-select></gtranslate-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-toolbar color="white">
+    <ion-segment [(ngModel)]="segment" color="primary">
+      <ion-segment-button value="top10">
+        {{'TOP 10 STORIES' | gtranslate:gtp.last }}
+      </ion-segment-button>
+      <ion-segment-button value="news">
+        {{'LATEST NEWS' | gtranslate:gtp.last }}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+  <ng-container *ngIf="segment === 'top10'">
+    <div padding text-center *ngIf="top10.length < 1">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+    <div padding *ngFor="let article of top10; let i = index" tappable (click)="openArticle(article)">
+      <div class="top10-number">{{i+1}}.</div>
+      <div class="top10-texts">
+        <p class="top10-title" text-wrap [ngStyle]="{color: article.color}">{{article.title | gtranslate:gtp.last }} »</p>
+        <p class="top10-author">{{article?.source}}</p>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="segment === 'news'">
+    <div padding text-center *ngIf="news.length < 1">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+    <div padding *ngFor="let article of news; let i = index" tappable (click)="openArticle(article)">
+      <div class="top10-number">{{i+1}}.</div>
+      <div class="top10-texts">
+        <p class="top10-title" text-wrap [ngStyle]="{color: article.color}">{{article.title | gtranslate:gtp.last }} »</p>
+        <p class="top10-author">{{article?.source}}</p>
+      </div>
+    </div>
+  </ng-container>
+
+</ion-content>

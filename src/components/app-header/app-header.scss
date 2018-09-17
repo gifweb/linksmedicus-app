@@ -15,6 +15,19 @@ app-header {
         .select-icon .select-icon-inner {
             color: #fff;
         }
+        .button-menu {
+            height: 56px;
+            background: color($colors, primary);
+            color: color($colors, light);
+            border-radius: 0;
+            padding: 0;
+            margin: 0;
+            width: 56px;
+        }
+        .buttons-menu {
+            padding: 0;
+            margin: 0;
+        }
     }
     
 }
