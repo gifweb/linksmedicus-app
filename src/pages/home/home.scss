@@ -2,6 +2,12 @@ page-home {
     .segment .segment-button {
         border-width: 3px;
     }
+    .toolbar-tabs {
+        padding: 0;
+        .segment .segment-button {
+            border-width: 0px;
+        }
+    }
     span {
         display: inline-block;
     }
@@ -23,10 +29,49 @@ page-home {
         font-weight: bold;
         padding-top: 1px;
         width: 24px;
-        padding-right:3px;
+        padding-right: 3px;
         text-align: right;
     }
     .top10-texts {
         margin-left: 24px;
+    }
+    .segment-news {
+        background: color($colors, secondary) !important;
+        
+        .item {
+            background: transparent !important;
+            font-size: 1.4rem;
+            .label,
+            .icon {
+                color: #827756;
+            }
+        }
+    }
+    .segment-databases {
+        background: color($colors, ternary) !important;
+        .item-divider .label {
+            color: #036cb3 !important;
+            text-align: center;
+            font-weight: 500;
+        }
+        .item {
+            background: transparent !important;
+            font-size: 1.4rem;
+            .label,
+            .icon {
+                color: #4f8073;
+            }
+        }
+    }
+    .segment-guidelines {
+        background: color($colors, quaternary) !important;
+        .item {
+            background: transparent !important;
+            font-size: 1.4rem;
+            .label,
+            .icon {
+                color: #44708e;
+            }
+        }
     }
 }

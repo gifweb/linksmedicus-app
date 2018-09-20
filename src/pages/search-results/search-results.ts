@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WpProvider } from '../../providers/wp/wp';
 import { OpenUrlProvider } from '../../providers/open-url/open-url';
+import { GtranslateProvider } from '../../providers/gtranslate/gtranslate';
 
 
 @IonicPage()
@@ -18,7 +19,9 @@ export class SearchResultsPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private wp: WpProvider,
-    private openUrl: OpenUrlProvider
+    private openUrl: OpenUrlProvider,
+    public gtp: GtranslateProvider,
+
   ) {
   }
 

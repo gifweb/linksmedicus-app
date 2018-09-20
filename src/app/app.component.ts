@@ -140,4 +140,8 @@ export class MyApp {
     this.openUrlProvider.open(url)
   }
 
+  translate(term){
+    return this.gtp.getTranslate(term, this.gtp.last);
+  }
+
 }

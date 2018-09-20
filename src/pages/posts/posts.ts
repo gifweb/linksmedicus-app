@@ -49,6 +49,9 @@ export class PostsPage {
     this.archive = (this.navParams.get('archive')) ? this.navParams.get('archive') : false;
     this.specialtie = (this.navParams.get('specialtie')) ? this.navParams.get('specialtie') : 177;
     this.title = (this.navParams.get('title')) ? this.navParams.get('title') : '';
+    this.gtp.last$.subscribe((last) => {
+      this.updateLinks();
+    })
   }
 
   /*loadSpecialties() {
@@ -62,7 +65,9 @@ export class PostsPage {
   }*/
 
   openArticle(article) {
-    this.navCtrl.push('article', { article })
+    console.log('article', article)
+    this.openUrl.open(article.url);
+    //this.navCtrl.push('article', { article })
   }
 
   loadPosts(specialtie, flush?, infiniteScroll?: InfiniteScroll) {

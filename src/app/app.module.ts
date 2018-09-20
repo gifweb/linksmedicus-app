@@ -27,6 +27,7 @@ import { LocalDbProvider } from '../providers/local-db/local-db';
 import { Firebase } from '@ionic-native/firebase';
 import { GtranslateProvider } from '../providers/gtranslate/gtranslate';
 import { PipesModule } from '../pipes/pipes.module';
+import { NgxModelModule } from 'ngx-model';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { PipesModule } from '../pipes/pipes.module';
     HttpModule,
     FormsModule, 
     IonicModule.forRoot(MyApp),
+    NgxModelModule,
     ComponentsModule,
     PipesModule,
   ],

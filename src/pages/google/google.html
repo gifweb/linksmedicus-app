@@ -17,13 +17,13 @@
 
   <!--select-topic (onSelectTopic)="openNews($event)"></select-topic-->
 
-  <div padding text-center *ngIf="aboutLoading">
+  <div padding text-center *ngIf="googleLoading">
     <ion-spinner name="crescent"></ion-spinner>
   </div>
 
-  <div padding *ngIf="!(aboutLoading) && about">
-    <h2>{{about.title | gtranslate:gtp.last }}</h2>
-    <div text-center [innerHTML]="about.content | gtranslate:gtp.last"></div>
+  <div padding *ngIf="!(googleLoading) && google">
+    <h2>{{google.title | gtranslate:gtp.last }}</h2>
+    <div text-center [innerHTML]="google.content | gtranslate:gtp.last"></div>
   </div>
 
   <app-footer></app-footer>

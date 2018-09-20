@@ -1,19 +1,33 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Search Results</ion-title>
+    <ion-title>{{'Search Results' | gtranslate:gtp.last}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content #content class="search-content">
 
+  <ion-grid no-padding border-bottom>
+    <ion-row align-items-center>
+      <ion-col>
+        <open-access></open-access>
+      </ion-col>
+      <ion-col col-auto text-right>
+        <gtranslate-select></gtranslate-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
   <div padding text-center *ngIf="isLoading">
     <ion-spinner name="crescent"></ion-spinner>
   </div>
-  <ion-card *ngFor="let article of results">
-    <ion-card-header text-wrap [innerHTML]="article.title"></ion-card-header>
-    <ion-card-content>
-      <h4>{{article?.date | date: 'd MMM,y'}}</h4>
-      <p text-wrap [innerHTML]="article.content"></p>
-    </ion-card-content>
-  </ion-card>
+  <div padding *ngFor="let article of results">
+    <h2 text-wrap [innerHTML]="article.title | gtranslate:gtp.last" tappable (click)="openArticle(article)"></h2>
+    <p class="date" tappable (click)="openArticle(article)">{{ article?.date | date:'d MMM, yyy' }} | {{ article?.date
+      | date:'HH:mm' }}h | UTC</p>
+    <div class="html-content" [innerHTML]="article?.content | gtranslate:gtp.last"></div>
+    <hr />
+  </div>
+
+  <app-footer *ngIf="!isLoading"></app-footer>
+
 </ion-content>

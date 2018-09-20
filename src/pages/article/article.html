@@ -23,8 +23,10 @@
     <h2 [innerHTML]="article?.title | gtranslate:gtp.last"></h2>
     <p class="date">{{ article?.date | date:'d MMM, yyy' }} | {{ article?.date | date:'HH:mm' }}h | UTC</p>
     <div class="html-content" [innerHTML]="article?.content | gtranslate:gtp.last"></div>
+    <div class="html-content" [innerHTML]="article?.desc | gtranslate:gtp.last"></div>
   </div>
 
 
+  <app-footer></app-footer>
 
 </ion-content>

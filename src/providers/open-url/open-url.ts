@@ -20,12 +20,6 @@ export class OpenUrlProvider {
 
   open(url: string) {
 
-    this.firebase.logEvent('open_url', { url }).then((data) => {
-      console.log('log event open_url', data, { url })
-    }).catch((err) => {
-      console.log('log event err', err)
-    })
-
     if (url.substr(0, 4) !== 'http') {
       url = 'http://' + url;
     }
@@ -33,6 +27,12 @@ export class OpenUrlProvider {
     if (!this.platform.is('cordova')) {
       window.open(url, '_system');
     } else {
+      this.firebase.logEvent('open_url', { url }).then((data) => {
+        console.log('log event open_url', data, { url })
+      }).catch((err) => {
+        console.log('log event err', err)
+      })
+  
       this.browserTab.isAvailable().then(isAvailable => {
         if (isAvailable) {
           this.openBrowserTab(url);

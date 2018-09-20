@@ -23,13 +23,15 @@
     <h1 text-center *ngIf="posts && posts.length > 0" [innerHTML]="title | gtranslate:gtp.last"></h1>
     <div *ngFor="let article of posts" tappable (click)="openArticle(article)">
       <h2 text-wrap [innerHTML]="article.title | gtranslate:gtp.last"></h2>
-      <p class="date">{{ article?.date | date:'d MMM, yyy' }} | {{ article?.date | date:'HH:mm' }}h | UTC</p>
-      <div class="html-content" [innerHTML]="article?.content | gtranslate:gtp.last"></div>
+      <!--p class="date">{{ article?.date | date:'d MMM, yyy' }} | {{ article?.date | date:'HH:mm' }}h | UTC</p-->
+      <div class="html-content" [innerHTML]="article?.desc | gtranslate:gtp.last"></div>
       <hr />
     </div>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>
+
+  <app-footer></app-footer>
 
 </ion-content>

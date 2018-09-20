@@ -20,7 +20,7 @@ echo "Generating iOS IPA"
 
 echo "Generating Android APK"
 #cordova build android --release
-#ionic cordova build android --prod --release
+ionic cordova build android --prod --release
 
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cert/"$APPNAME".keystore platforms/android/build/outputs/apk/android-release-unsigned.apk "$APKSIGNNAME"
 zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk release/"$APPNAME"-"$APPVERSION".apk

@@ -28,15 +28,18 @@ $result_keys = [];
 $translates = [];
 
 foreach ($texts as $k => $text) {
-    $key = md5($text);
-    $result = $cache->retrieve($key);
-    if (!$result) {
-        //echo 'traduzindo....';
-        $translates[] = $text;
-    } else {
-        //echo 'cacheado!';
-        $result_keys[$key] = $result;
+    if($text !== null){
+        $key = md5($text);
+        $result = $cache->retrieve($key);
+        if (!$result) {
+            //echo 'traduzindo....';
+            $translates[] = $text;
+        } else {
+            //echo 'cacheado!';
+            $result_keys[$key] = $result;
+        }
     }
+   
 }
 
 if (!empty($translates)) {

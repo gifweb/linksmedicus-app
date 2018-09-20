@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { SearchResultsPage } from './search-results';
-import { PipesModule } from '../../pipes/pipes.module';
+import { PrivacyPage } from './privacy';
 import { ComponentsModule } from '../../components/components.module';
+import { PipesModule } from '../../pipes/pipes.module';
+
 
 @NgModule({
   declarations: [
-    SearchResultsPage,
+    PrivacyPage,
   ],
   imports: [
-    IonicPageModule.forChild(SearchResultsPage),
+    IonicPageModule.forChild(PrivacyPage),
     ComponentsModule,
     PipesModule,
   ],
 })
-export class SearchResultsPageModule { }
+export class PrivacyPageModule { }

@@ -21,9 +21,9 @@
       <ion-spinner name="crescent"></ion-spinner>
     </div>
     <h1 text-center *ngIf="news && news.length > 0" [innerHTML]="title | gtranslate:gtp.last"></h1>
-    <div *ngFor="let article of news" tappable (click)="openArticle(article)">
-      <h2 text-wrap [innerHTML]="article.title | gtranslate:gtp.last"></h2>
-      <p class="date">{{ article?.date | date:'d MMM, yyy' }} | {{ article?.date | date:'HH:mm' }}h | UTC</p>
+    <div *ngFor="let article of news" >
+      <h2 text-wrap [innerHTML]="article.title | gtranslate:gtp.last" tappable (click)="openArticle(article)"></h2>
+      <p class="date" tappable (click)="openArticle(article)">{{ article?.date | date:'d MMM, yyy' }} | {{ article?.date | date:'HH:mm' }}h | UTC</p>
       <div class="html-content" [innerHTML]="article?.content | gtranslate:gtp.last"></div>
       <hr />
     </div>
@@ -31,5 +31,7 @@
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>
+
+  <app-footer></app-footer>
 
 </ion-content>

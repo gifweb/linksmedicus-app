@@ -233,7 +233,7 @@ export class WpProvider {
 
   getLatest() {
 
-    let getNewsUrl = Config.WORDPRESS_REST_API_URL + "news?per_page=10";
+    let getNewsUrl = Config.WORDPRESS_REST_API_URL + "news?per_page=20";
     const specialtie = 185;
     if (specialtie) {
       getNewsUrl += "&specialties=" + specialtie;
@@ -329,7 +329,9 @@ export class WpProvider {
           date: item.date,
           title: item.title.rendered,
           content: content,
-          link: item.link,
+          desc: item.desc,
+          link: item.link, 
+          url: item.url, 
           slug: item.slug,
         };
       }));

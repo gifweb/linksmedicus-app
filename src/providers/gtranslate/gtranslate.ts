@@ -2,9 +2,13 @@ import { Injectable } from '@angular/core';
 import { Http, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import * as Config from '../../app/app.config';
+import { ModelFactory, Model } from 'ngx-model';
 
 @Injectable()
 export class GtranslateProvider {
+
+  private model: Model<number>;
+  last$: Observable<number>;
 
 
   translates: any = {
@@ -28,12 +32,17 @@ export class GtranslateProvider {
     return Config.last;
   }
   set last(value: number) {
+    this.model.set(value);
     Config.setLast(value);
   }
 
   constructor(
     private http: Http,
+    private modelFactory: ModelFactory<number>
   ) {
+
+    this.model = this.modelFactory.create(0);
+    this.last$ = this.model.data$;
   }
 
   getTranslate(term: string, last: number) {
@@ -41,11 +50,14 @@ export class GtranslateProvider {
       this.translates[this.lang.code] = {};
     }
     const langTranslates = this.translates[this.lang.code][term];
+    if (term === null) {
+      return '';
+    }
     return (langTranslates !== undefined) ? langTranslates : this.findTranslate(term);
   }
 
   findTranslate(term: string) {
-    if (this.needsTranslation.indexOf(term) < 0) {
+    if (this.needsTranslation.indexOf(term) < 0 && term !== null && term !== undefined) {
       this.needsTranslation.push(term);
     }
     this._debounce(this.fetchTranslates, 500, false);

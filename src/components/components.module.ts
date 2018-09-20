@@ -5,6 +5,7 @@ import { SelectTopicComponent } from './select-topic/select-topic';
 import { OpenAccessComponent } from './open-access/open-access';
 import { GtranslateSelectComponent } from './gtranslate-select/gtranslate-select';
 import { PipesModule } from '../pipes/pipes.module';
+import { AppFooterComponent } from './app-footer/app-footer';
 
 @NgModule({
     declarations: [
@@ -12,6 +13,7 @@ import { PipesModule } from '../pipes/pipes.module';
         SelectTopicComponent,
         OpenAccessComponent,
         GtranslateSelectComponent,
+    AppFooterComponent,
     ],
     imports: [
         IonicPageModule.forChild(AppHeaderComponent),
@@ -25,6 +27,7 @@ import { PipesModule } from '../pipes/pipes.module';
         SelectTopicComponent,
         OpenAccessComponent,
         GtranslateSelectComponent,
+    AppFooterComponent,
     ]
 })
 export class ComponentsModule { }

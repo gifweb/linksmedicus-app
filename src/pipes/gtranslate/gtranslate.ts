@@ -9,6 +9,9 @@ export class GtranslatePipe implements PipeTransform {
   constructor(private gtranslateProvider: GtranslateProvider) { }
 
   transform(value: string, ...args) {
+    if(value === null){
+      return '';
+    }
     return this.gtranslateProvider.getTranslate(value, args[0]);
   }
 
