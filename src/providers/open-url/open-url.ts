@@ -4,6 +4,7 @@ import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } fro
 import { Platform } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Firebase } from '@ionic-native/firebase';
+import { GtranslateProvider } from '../gtranslate/gtranslate';
 
 @Injectable()
 export class OpenUrlProvider {
@@ -13,7 +14,8 @@ export class OpenUrlProvider {
     private browserTab: BrowserTab,
     private themeableBrowser: ThemeableBrowser,
     private socialSharing: SocialSharing,
-    private firebase: Firebase
+    private firebase: Firebase,
+    private gtranslate: GtranslateProvider
   ) {
 
   }
@@ -24,6 +26,10 @@ export class OpenUrlProvider {
       url = 'http://' + url;
     }
 
+    if (this.gtranslate.lang.code !== 'en') {
+      url = 'https://translate.google.com/translate?sl=en&tl=' + this.gtranslate.lang.code + '&u=' + url;
+    }
+
     if (!this.platform.is('cordova')) {
       window.open(url, '_system');
     } else {
@@ -32,7 +38,7 @@ export class OpenUrlProvider {
       }).catch((err) => {
         console.log('log event err', err)
       })
-  
+
       this.browserTab.isAvailable().then(isAvailable => {
         if (isAvailable) {
           this.openBrowserTab(url);

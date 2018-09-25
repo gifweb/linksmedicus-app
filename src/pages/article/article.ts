@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GtranslateProvider } from '../../providers/gtranslate/gtranslate';
 import { OpenUrlProvider } from '../../providers/open-url/open-url';
+import { WpProvider } from '../../providers/wp/wp';
 
 @IonicPage({
   name: 'article',
+  segment: 'article/:slug',
   priority: 'high',
   defaultHistory: ['home']
 })
@@ -21,11 +23,21 @@ export class ArticlePage {
     public navParams: NavParams,
     public gtp: GtranslateProvider,
     private openUrl: OpenUrlProvider,
+    private wp: WpProvider,
+
   ) {
 
     this.article = this.navParams.get('article');
+    const slug = this.navParams.get('slug');
     if (!this.article) {
-      this.navCtrl.pop();
+      if(!slug){
+        this.navCtrl.pop();
+        return;
+      } else {
+        this.wp.getArticle(slug).subscribe((data) => {
+          this.article = data[0];
+        })
+      }
     }
 
     this.gtp.last$.subscribe((last) => {

@@ -56,7 +56,7 @@ export class HomePage {
   }
 
   openArticle(article) {
-    this.navCtrl.push('article', { article })
+    this.navCtrl.push('article', { article, slug: article.slug })
   }
 
   openPage(page, params?) {

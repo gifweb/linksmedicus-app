@@ -258,6 +258,24 @@ export class WpProvider {
       }));
   }
 
+  getArticle(slug: string) {
+
+    let getNewsUrl = Config.WORDPRESS_REST_API_URL + "news?slug=" + slug;
+    return this.http.get(getNewsUrl)
+      .map(res => res.json())
+      .map(data => data.map(item => {
+        const content = (item.content.rendered).replace(/href/g, 'target="_blank" href');
+        return {
+          id: item.id,
+          date: item.date,
+          title: item.title.rendered,
+          content: content,
+          link: item.link,
+          slug: item.slug,
+        };
+      }));
+  }
+
   getNews(specialtie, page?: number, archive?: any) {
     if (page === undefined) {
       page = 1;
@@ -330,8 +348,8 @@ export class WpProvider {
           title: item.title.rendered,
           content: content,
           desc: item.desc,
-          link: item.link, 
-          url: item.url, 
+          link: item.link,
+          url: item.url,
           slug: item.slug,
         };
       }));

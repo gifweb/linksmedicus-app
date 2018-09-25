@@ -67,10 +67,22 @@ export class MyApp {
           '/specialties/:slug': { target: 'news' },
           '/guidelines': { target: 'library' },
           '/guideline/:slug': { target: 'guidelines' },
+
           '/about-us': { target: 'about' },
+          '/terms-of-use': { target: 'terms' },
+          '/privacy-policy': { target: 'privacy' },
+          '/google-translate-disclaimer': { target: 'google' },
+
+          '/news/:slug': { target: 'article' },
+          '/2017/news/:slug': { target: 'article' },
+
         }).subscribe((match) => {
           console.log('Successfully matched route', match);
-          this.nav.setRoot(match.$route.target, match.$args);
+          if (match.$route.target === 'article') {
+            this.nav.push('article', match.$args);
+          } else {
+            this.nav.setRoot(match.$route.target, match.$args);
+          }
         }, (nomatch) => {
           console.log('Got a deeplink that didn\'t match', nomatch);
         });
@@ -140,7 +152,7 @@ export class MyApp {
     this.openUrlProvider.open(url)
   }
 
-  translate(term){
+  translate(term) {
     return this.gtp.getTranslate(term, this.gtp.last);
   }
 

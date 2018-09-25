@@ -46,6 +46,9 @@ export class GtranslateProvider {
   }
 
   getTranslate(term: string, last: number) {
+    if(this.lang.code === 'en'){
+      return term;
+    }
     if (this.translates[this.lang.code] === undefined) {
       this.translates[this.lang.code] = {};
     }

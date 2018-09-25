@@ -66,7 +66,7 @@ export class NewsPage {
   }*/
 
   openArticle(article) {
-    this.navCtrl.push('article', { article })
+    this.navCtrl.push('article', { article, slug: article.slug })
   }
 
   loadNews(specialtie, flush?, infiniteScroll?: InfiniteScroll) {
