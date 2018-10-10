@@ -39,19 +39,36 @@ export class OpenUrlProvider {
         console.log('log event err', err)
       })
 
-      this.browserTab.isAvailable().then(isAvailable => {
-        if (isAvailable) {
-          this.openBrowserTab(url);
-        } else {
-          this.openBrowserTab(url);
-        }
+      this.openBrowserTab(url);
+
+    }
+  }
+
+  openNoMenu(url: string) {
+
+    if (url.substr(0, 4) !== 'http') {
+      url = 'http://' + url;
+    }
+
+    if (this.gtranslate.lang.code !== 'en') {
+      url = 'https://translate.google.com/translate?sl=en&tl=' + this.gtranslate.lang.code + '&u=' + url;
+    }
+
+    if (!this.platform.is('cordova')) {
+      window.open(url, '_system');
+    } else {
+      this.firebase.logEvent('open_url', { url }).then((data) => {
+        console.log('log event open_url', data, { url })
+      }).catch((err) => {
+        console.log('log event err', err)
       })
+
+      this.openBrowserTab(url);
+
     }
   }
 
   share(url: string, title: string, description: string) {
-
-
 
     if (url.substr(0, 4) !== 'http') {
       url = 'http://' + url;

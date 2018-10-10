@@ -152,6 +152,20 @@ export class MyApp {
     this.openUrlProvider.open(url)
   }
 
+  openUrl2(url) {
+    this.openUrlProvider.openNoMenu(url)
+  }
+
+  openSpecialties() {
+    this.nav.setRoot('specialties');
+  }
+
+  openGeneralTopics() {
+    this.nav.setRoot('specialties', { generalTopics: true });
+  }
+
+
+
   translate(term) {
     return this.gtp.getTranslate(term, this.gtp.last);
   }

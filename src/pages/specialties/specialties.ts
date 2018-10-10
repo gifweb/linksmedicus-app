@@ -56,13 +56,17 @@ export class SpecialtiesPage {
   }
 
   generalTopicsCheck() {
-    this.loaded++;
-    if (this.loaded > 1) {
-      const isGeneralTopics = this.navParams.get('generalTopics');
-      if (isGeneralTopics) {
+    const isGeneralTopics = this.navParams.get('generalTopics');
+
+    console.log('isGeneralTopics', isGeneralTopics);
+    if (isGeneralTopics) {
+      this.loaded++;
+      if (this.loaded > 1) {
         setTimeout(() => {
           let element = document.getElementById('generalTopics');
-          this.content.scrollTo(0, element.offsetTop, 0);
+          if(this.content){
+            this.content.scrollTo(0, element.offsetTop, 0);
+          }
         }, 50)
 
       }
@@ -72,7 +76,8 @@ export class SpecialtiesPage {
 
 
   openLinks(category) {
-    this.navCtrl.push('links', { category, slug: category.slug });
+    console.log('cat', category);
+    this.navCtrl.push('posts', { specialtie: category.id, title: category.name });
   }
 
   ionViewDidLoad() {

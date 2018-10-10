@@ -12,14 +12,14 @@ APKSIGNNAME="keystorelinksmedicus"
 echo "Generating App: ${APPNAME} v${APPVERSION}"
 echo "..."
 
-#npm run ionic:build --prod
+npm run ionic:build --prod
 
 echo "Generating iOS IPA"
-#cordova build ios --release
+cordova build ios --release
 #ionic cordova build ios --prod --release
 
 echo "Generating Android APK"
-#cordova build android --release
+cordova build android --release
 #ionic cordova build android --prod --release
 
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cert/"$APPNAME".keystore platforms/android/build/outputs/apk/android-release-unsigned.apk "$APKSIGNNAME"

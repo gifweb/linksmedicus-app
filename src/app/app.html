@@ -50,7 +50,7 @@
             {{'ARCHIVES' | gtranslate:gtp.last }}
           </button>
 
-          <button color="primary" menuClose ion-item (click)="openPage('about')" detail-none>
+          <button color="primary" menuClose ion-item (click)="openUrl2('https://linksmedicus.com/2017/subscribe/')" detail-none>
             {{'Free E-mail Updates' | gtranslate:gtp.last }}
           </button>
 
@@ -78,12 +78,12 @@
             </button>
           </ng-container>
           <ng-container *ngIf="openedMenu && submenus && openedMenu === 'database'">
-            <ion-item-divider>{{'Specialties Homepage' | gtranslate:gtp.last }}</ion-item-divider>
+            <ion-item-divider menuClose (click)="openSpecialties()">{{'Specialties Homepage' | gtranslate:gtp.last }} <ion-icon name="ios-link"></ion-icon></ion-item-divider>
             <button menuClose *ngFor="let item of submenus?.database[0]" ion-item (click)="openPage('posts', {specialtie: item.id, title: item.name})"
               detail-none>
               <span [innerHTML]="item.name | gtranslate:gtp.last"></span>
             </button>
-            <ion-item-divider>{{'General Topics' | gtranslate:gtp.last }}</ion-item-divider>
+            <ion-item-divider menuClose (click)="openGeneralTopics()">{{'General Topics' | gtranslate:gtp.last }} <ion-icon name="ios-link"></ion-icon></ion-item-divider>
             <button menuClose *ngFor="let item of submenus?.database[1]" ion-item (click)="openPage('posts', {specialtie: item.id, title: item.name})"
               detail-none>
               <span [innerHTML]="item.name | gtranslate:gtp.last"></span>

@@ -4,7 +4,16 @@
 
 <ion-content #content>
 
-  <select-topic (onSelectTopic)="openNews($event)"></select-topic>
+  <ion-grid no-padding border-bottom>
+    <ion-row align-items-center>
+      <ion-col>
+        <open-access></open-access>
+      </ion-col>
+      <ion-col col-auto text-right>
+        <gtranslate-select></gtranslate-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <div padding text-center *ngIf="specialtiesLoading || generalTopicsLoading">
     <ion-spinner name="crescent"></ion-spinner>

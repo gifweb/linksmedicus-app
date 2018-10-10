@@ -39,6 +39,8 @@ page-home {
         background: color($colors, secondary) !important;
         
         .item {
+            width:50%;
+            display:inline-block;
             background: transparent !important;
             font-size: 1.4rem;
             .label,
@@ -55,6 +57,8 @@ page-home {
             font-weight: 500;
         }
         .item {
+            width:50%;
+            display:inline-block;
             background: transparent !important;
             font-size: 1.4rem;
             .label,
@@ -66,6 +70,8 @@ page-home {
     .segment-guidelines {
         background: color($colors, quaternary) !important;
         .item {
+            width:50%;
+            display:inline-block;
             background: transparent !important;
             font-size: 1.4rem;
             .label,
