@@ -1,10 +1,5 @@
 <ion-header>
-  <app-header></app-header>
-</ion-header>
-
-<ion-content #content class="posts-content">
-
-  <ion-grid no-padding border-bottom>
+<ion-grid no-padding border-bottom>
     <ion-row align-items-center>
       <ion-col>
         <open-access></open-access>
@@ -14,18 +9,25 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <app-header></app-header>
+</ion-header>
+
+<ion-content #content class="posts-content">
 
   <!--select-topic [hidden]="archive" [specialtie]="specialtie" (onSelectTopic)="changeTopic($event)"></select-topic-->
-  <div padding>
+  <div>
     <div text-center *ngIf="specialtiesLoading || postsLoading">
       <ion-spinner name="crescent"></ion-spinner>
     </div>
     <h1 text-center *ngIf="posts && posts.length > 0" [innerHTML]="title | gtranslate:gtp.last"></h1>
     <div *ngFor="let article of posts" tappable (click)="openArticle(article)">
-      <h2 text-wrap [innerHTML]="article.title | gtranslate:gtp.last"></h2>
-      <!--p class="date">{{ article?.date | date:'d MMM, yyy' }} | {{ article?.date | date:'HH:mm' }}h | UTC</p-->
-      <div class="html-content" [innerHTML]="article?.desc | gtranslate:gtp.last"></div>
-      <hr />
+      <ion-card>
+        <ion-card-content class="bg_content_news"> 
+          <h2 text-wrap [innerHTML]="article.title | gtranslate:gtp.last"></h2>
+          <!--p class="date">{{ article?.date | date:'d MMM, yyy' }} | {{ article?.date | date:'HH:mm' }}h | UTC</p-->
+          <div class="html-content" [innerHTML]="article?.desc | gtranslate:gtp.last"></div>
+        </ion-card-content>
+      </ion-card>
     </div>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>

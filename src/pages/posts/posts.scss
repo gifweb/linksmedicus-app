@@ -1,11 +1,11 @@
 page-posts {
     h1 {
         color: #535353;
-        font-size: 2.6rem;
+        font-size: 2.1rem;
         font-weight: 300;
         margin:0px;
-        padding-top:30px;
-        padding-bottom:50px;
+        padding-top:20px;
+        padding-bottom:10px;
     }
     h4 {
         /*padding: 5px 10px;*/
@@ -13,10 +13,14 @@ page-posts {
         font-weight: 700;
     }
 
+    ion-icon.back-button-icon.icon.icon-md.back-button-icon-md.ion-md-arrow-back {
+    color: #FFF;
+    }
     h2 {
-        color: #036cb3;
-        font-size: 2.4rem;
-        font-weight: 300;
+        color: #036cb3 !important;
+        margin:2px 0 10px 0 !important;
+        /*font-size: 1.9rem !important;
+        font-weight: 300 !important;*/
         
     }
     a {
@@ -33,13 +37,13 @@ page-posts {
 
     }
     .html-content {
-        line-height: 1.8;
+       line-height: 1.5;
         font-size: 1.6rem;
         text-align: justify;
-       
+        color: #484848;
+}
     }
     hr {
         margin-top:30px;
         margin-bottom:30px;
     }
-}

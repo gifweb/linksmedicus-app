@@ -8,7 +8,7 @@
       </ion-buttons>
       <ion-title>
         <div tappable menuClose (click)="openPage('home')">
-          <img src="assets/img/logo-novo.png" class="header-logo" />
+          <img src="assets/img/logo-novo-color.png" class="header-logo" />
         </div>
       </ion-title>
 
@@ -42,7 +42,7 @@
           </button>
 
           <button color="quaternary" icon-right ion-item (click)="openMenu('guidelines')" detail-none>
-            {{'GUIDELINES' | gtranslate:gtp.last }}
+            {{'LIBRARY' | gtranslate:gtp.last }}
             <ion-icon item-right name="ios-arrow-forward"></ion-icon>
           </button>
 
@@ -50,7 +50,8 @@
             {{'ARCHIVES' | gtranslate:gtp.last }}
           </button>
 
-          <button color="primary" menuClose ion-item (click)="openUrl2('https://linksmedicus.com/2017/subscribe/')" detail-none>
+          <button color="primary" menuClose ion-item (click)="openUrl2('https://linksmedicus.com/2017/subscribe/')"
+            detail-none>
             {{'Free E-mail Updates' | gtranslate:gtp.last }}
           </button>
 
@@ -78,12 +79,16 @@
             </button>
           </ng-container>
           <ng-container *ngIf="openedMenu && submenus && openedMenu === 'database'">
-            <ion-item-divider menuClose (click)="openSpecialties()">{{'Specialties Homepage' | gtranslate:gtp.last }} <ion-icon name="ios-link"></ion-icon></ion-item-divider>
+            <ion-item-divider menuClose (click)="openSpecialties()">{{'Specialties Homepage' | gtranslate:gtp.last }}
+              <ion-icon name="ios-link"></ion-icon>
+            </ion-item-divider>
             <button menuClose *ngFor="let item of submenus?.database[0]" ion-item (click)="openPage('posts', {specialtie: item.id, title: item.name})"
               detail-none>
               <span [innerHTML]="item.name | gtranslate:gtp.last"></span>
             </button>
-            <ion-item-divider menuClose (click)="openGeneralTopics()">{{'General Topics' | gtranslate:gtp.last }} <ion-icon name="ios-link"></ion-icon></ion-item-divider>
+            <ion-item-divider menuClose (click)="openGeneralTopics()">{{'General Topics' | gtranslate:gtp.last }}
+              <ion-icon name="ios-link"></ion-icon>
+            </ion-item-divider>
             <button menuClose *ngFor="let item of submenus?.database[1]" ion-item (click)="openPage('posts', {specialtie: item.id, title: item.name})"
               detail-none>
               <span [innerHTML]="item.name | gtranslate:gtp.last"></span>

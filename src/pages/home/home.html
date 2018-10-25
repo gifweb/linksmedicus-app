@@ -1,10 +1,5 @@
 <ion-header>
-  <app-header></app-header>
-</ion-header>
-
-<ion-content>
-
-  <ion-grid no-padding border-bottom>
+<ion-grid no-padding border-bottom>
     <ion-row align-items-center>
       <ion-col>
         <open-access></open-access>
@@ -14,26 +9,39 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <app-header></app-header>
+</ion-header>
 
-  <ion-toolbar color="white">
-    <ion-segment [(ngModel)]="segment" color="primary">
-      <ion-segment-button value="top10">
+<ion-content>
+
+  <ion-toolbar class="">
+    <ion-segment class="bg_top_news" [(ngModel)]="segment" color="primary">
+      <ion-segment-button class="color-white" value="top10">
         {{'TOP 10 STORIES' | gtranslate:gtp.last }}
       </ion-segment-button>
-      <ion-segment-button value="news">
+      <ion-segment-button class="color-white" value="news">
         {{'LATEST NEWS' | gtranslate:gtp.last }}
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 
-  <ng-container *ngIf="segment === 'top10'">
-    <div padding text-center *ngIf="top10.length < 1">
+  <ion-card>
+
+  <ion-card-content class="bg_content_news">
+    <ng-container *ngIf="segment === 'top10'">
+    <div padding text-center *ngIf="top10.length < 1"git add >
       <ion-spinner name="crescent"></ion-spinner>
     </div>
-    <div padding *ngFor="let article of top10; let i = index" tappable (click)="openArticle(article)">
-      <div class="top10-number">{{i+1}}.</div>
+      <ion-card-header class="mon_fri">
+        Mon-Fri | 11 Oct, 2018
+      </ion-card-header>
+    <div *ngFor="let article of top10; let i = index" tappable (click)="openArticle(article)">
+
       <div class="top10-texts">
-        <p class="top10-title" text-wrap [ngStyle]="{color: article.color}">{{article.title | gtranslate:gtp.last }} »</p>
+        <p class="top10-title" text-wrap [ngStyle]="{color: article.color}">
+          {{i+1}}.
+          {{article.title | gtranslate:gtp.last }} »
+        </p>
         <p class="top10-author">{{article?.source}}</p>
       </div>
     </div>
@@ -42,11 +50,11 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="segment === 'news'">
+  <ng-container class="bg_content_news" *ngIf="segment === 'news'">
     <div padding text-center *ngIf="news.length < 1">
       <ion-spinner name="crescent"></ion-spinner>
     </div>
-    <div padding *ngFor="let article of news; let i = index" tappable (click)="openArticle(article)">
+    <div *ngFor="let article of news; let i = index" tappable (click)="openArticle(article)">
       <div class="top10-texts">
         <p class="top10-title" text-wrap [ngStyle]="{color: article.color}">{{article.title | gtranslate:gtp.last }} »</p>
         <p class="top10-author">{{article?.source}}</p>
@@ -56,8 +64,14 @@
       <button ion-button item-right (click)="moreNews()">{{'Read more' | gtranslate:gtp.last }}</button>
     </div>
   </ng-container>
+  </ion-card-content>
+</ion-card>
 
-  <ion-toolbar color="light" class="toolbar-tabs">
+
+
+
+
+  <ion-card color="light" class="toolbar-tabs mg_btom_zero">
     <div padding text-center>
       {{'Specialties / General Topics' | gtranslate:gtp.last }}
     </div>
@@ -69,12 +83,12 @@
         {{'DATABASES' | gtranslate:gtp.last }}
       </ion-segment-button>
       <ion-segment-button value="guidelines" class="segment-guidelines">
-        {{'GUIDELINES' | gtranslate:gtp.last }}
+        {{'LIBRARY' | gtranslate:gtp.last }}
       </ion-segment-button>
     </ion-segment>
-  </ion-toolbar>
+  </ion-card>
 
-  <div *ngIf="segment2 === 'news'" class="segment-news">
+  <ion-card *ngIf="segment2 === 'news'" class="segment-news">
     <div padding text-center *ngIf="!submenus?.news">
       <ion-spinner name="crescent"></ion-spinner>
     </div>
@@ -88,9 +102,9 @@
 
     </ng-container>
 
-  </div>
+  </ion-card>
 
-  <div *ngIf="segment2 === 'databases'" class="segment-databases">
+  <ion-card *ngIf="segment2 === 'databases'" class="segment-databases">
     <div padding text-center *ngIf="!submenus?.database">
       <ion-spinner name="crescent"></ion-spinner>
     </div>
@@ -109,9 +123,9 @@
 
     </ng-container>
 
-  </div>
+  </ion-card>
 
-  <div *ngIf="segment2 === 'guidelines'" class="segment-guidelines">
+  <ion-card *ngIf="segment2 === 'guidelines'" class="segment-guidelines">
     <div padding text-center *ngIf="!submenus?.guidelines">
       <ion-spinner name="crescent"></ion-spinner>
     </div>
@@ -125,7 +139,7 @@
     </ng-container>
 
 
-  </div>
+  </ion-card>
 
 
   <app-footer></app-footer>

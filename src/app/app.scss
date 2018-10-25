@@ -12,7 +12,11 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-.content {}
+.content {
+    .bg_content_news{
+        background:#f8f8f8;
+    }
+}
 
 .menu-content {
     background: color($colors, primary);

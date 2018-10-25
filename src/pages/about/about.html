@@ -1,10 +1,5 @@
 <ion-header>
-  <app-header></app-header>
-</ion-header>
-
-<ion-content>
-
-  <ion-grid no-padding border-bottom>
+<ion-grid no-padding border-bottom>
     <ion-row align-items-center>
       <ion-col>
         <open-access></open-access>
@@ -14,6 +9,10 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <app-header></app-header>
+</ion-header>
+
+<ion-content>
 
   <!--select-topic (onSelectTopic)="openNews($event)"></select-topic-->
 
@@ -21,9 +20,14 @@
     <ion-spinner name="crescent"></ion-spinner>
   </div>
 
-  <div padding *ngIf="!(aboutLoading) && about">
+  <div *ngIf="!(aboutLoading) && about">
+    
     <h2>{{about.title | gtranslate:gtp.last }}</h2>
+    <ion-card>
+        <ion-card-content class="bg_content_news"> 
     <div text-center [innerHTML]="about.content | gtranslate:gtp.last"></div>
+    </ion-card-content>
+      </ion-card>
   </div>
 
   <app-footer></app-footer>

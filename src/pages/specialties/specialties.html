@@ -1,10 +1,5 @@
 <ion-header>
-  <app-header></app-header>
-</ion-header>
-
-<ion-content #content>
-
-  <ion-grid no-padding border-bottom>
+<ion-grid no-padding border-bottom>
     <ion-row align-items-center>
       <ion-col>
         <open-access></open-access>
@@ -14,6 +9,10 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <app-header></app-header>
+</ion-header>
+
+<ion-content #content>
 
   <div padding text-center *ngIf="specialtiesLoading || generalTopicsLoading">
     <ion-spinner name="crescent"></ion-spinner>

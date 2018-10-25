@@ -64,7 +64,7 @@ export class HomePage {
   }
 
   moreNews() {
-    this.navCtrl.setRoot('news');
+    this.openPage('news', { specialtie: 178, title: this.translate('All Posts') })
   }
 
   moreTop10() {

@@ -5,6 +5,9 @@ page-article {
         font-weight: 300;
 
     }
+    ion-icon.back-button-icon.icon.icon-md.back-button-icon-md.ion-md-arrow-back {
+      color: #FFF;
+    }
     a {
         color: #2969b0;
         font-weight: 500;
@@ -22,5 +25,8 @@ page-article {
         font-size:1.6rem;
         line-height: 1.8;
         text-align: justify;
+    }
+    button.back-button.disable-hover.bar-button.bar-button-md.back-button-md.bar-button-default.bar-button-default-md.show-back-button {
+    color: #fff;
     }
 }
