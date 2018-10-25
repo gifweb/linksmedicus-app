@@ -15,7 +15,7 @@ echo "..."
 npm run ionic:build --prod
 
 echo "Generating iOS IPA"
-cordova build ios --release
+#cordova build ios --release
 #ionic cordova build ios --prod --release
 
 echo "Generating Android APK"

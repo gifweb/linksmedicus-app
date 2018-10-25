@@ -63,18 +63,28 @@ export class MyApp {
 
         this.deeplinks.route({
           '/medical-specialties': { target: 'specialties' },
+          '/medical-specialties/': { target: 'specialties' },
           '/medical-specialties/:slug': { target: 'links' },
+          '/medical-specialties/:slug/': { target: 'links' },
           '/specialties/:slug': { target: 'news' },
+          '/specialties/:slug/': { target: 'news' },
+          '/guidelines/': { target: 'library' },
           '/guidelines': { target: 'library' },
           '/guideline/:slug': { target: 'guidelines' },
+          '/guideline/:slug/': { target: 'guidelines' },
 
           '/about-us': { target: 'about' },
+          '/about-us/': { target: 'about' },
           '/terms-of-use': { target: 'terms' },
+          '/terms-of-use/': { target: 'terms' },
           '/privacy-policy': { target: 'privacy' },
           '/google-translate-disclaimer': { target: 'google' },
 
           '/news/:slug': { target: 'article' },
+          '/news/:slug/': { target: 'article' },
+          
           '/2017/news/:slug': { target: 'article' },
+          '/2017/news/:slug/': { target: 'article' },
 
         }).subscribe((match) => {
           console.log('Successfully matched route', match);
@@ -84,6 +94,9 @@ export class MyApp {
             this.nav.setRoot(match.$route.target, match.$args);
           }
         }, (nomatch) => {
+          //alert('Got a deeplink that didn\'t match');
+          //alert(JSON.stringify(nomatch));
+
           console.log('Got a deeplink that didn\'t match', nomatch);
         });
 
