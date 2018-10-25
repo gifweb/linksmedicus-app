@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GtranslateProvider } from '../../providers/gtranslate/gtranslate';
 import { OpenUrlProvider } from '../../providers/open-url/open-url';
 import { WpProvider } from '../../providers/wp/wp';
+import { FavProvider } from '../../providers/fav/fav';
 
 @IonicPage({
   name: 'article',
@@ -17,6 +18,7 @@ import { WpProvider } from '../../providers/wp/wp';
 export class ArticlePage {
 
   article: any;
+  favs: any[] = [];
 
   constructor(
     public navCtrl: NavController,
@@ -24,7 +26,7 @@ export class ArticlePage {
     public gtp: GtranslateProvider,
     private openUrl: OpenUrlProvider,
     private wp: WpProvider,
-
+    private fav: FavProvider,
   ) {
 
     this.article = this.navParams.get('article');
@@ -43,6 +45,36 @@ export class ArticlePage {
     this.gtp.last$.subscribe((last) => {
       this.updateLinks();
     })
+
+    this.loadFavs();
+  }
+
+  loadFavs() {
+    console.log('loadFavs');
+    this.fav.getItems().then((data) => {
+      console.log('loadFavs loaded!', data);
+      this.favs = data;
+    }).catch(err => {
+      console.log('loadFavs err', err);
+    })
+  }
+
+  isFav(link) {
+    return this.favs.find(fav => fav.id === link.id)
+  }
+
+  addFav(link) {
+    this.fav.addItem(link).then((res) => {
+      console.log(res);
+      this.loadFavs();
+    })
+  }
+
+  removeFav(link) {
+    this.fav.removeItem(link).then((res) => {
+      console.log(res);
+      this.loadFavs();
+    })
   }
 
   ionViewDidLoad() {
@@ -56,6 +88,10 @@ export class ArticlePage {
     const title = this.article.title;
     const description = this.article.content;
     this.openUrl.share(url, title, description);
+  }
+
+  openExternal(url) {
+    this.openUrl.open(url);
   }
 
   updateLinks() {

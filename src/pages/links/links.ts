@@ -49,7 +49,7 @@ export class LinksPage {
 
   loadFavs() {
     console.log('loadFavs');
-    this.fav.getItems(this.category).then((data) => {
+    this.fav.getItems().then((data) => {
       console.log('loadFavs loaded!', data);
       this.favs = data;
     }).catch(err => {
@@ -62,14 +62,14 @@ export class LinksPage {
   }
 
   addFav(link) {
-    this.fav.addItem(link, this.category).then((res) => {
+    this.fav.addItem(link).then((res) => {
       console.log(res);
       this.loadFavs();
     })
   }
 
   removeFav(link) {
-    this.fav.removeItem(link, this.category).then((res) => {
+    this.fav.removeItem(link).then((res) => {
       console.log(res);
       this.loadFavs();
     })

@@ -1,15 +1,15 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <button ion-button menuToggle="left">
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      Favorites
-    </ion-title>
-    <button right ion-button menuToggle="right">
-      <ion-icon name="search"></ion-icon>
-    </button>
-  </ion-navbar>
+  <ion-grid no-padding border-bottom>
+    <ion-row align-items-center>
+      <ion-col>
+        <open-access></open-access>
+      </ion-col>
+      <ion-col col-auto text-right>
+        <gtranslate-select></gtranslate-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <app-header></app-header>
 </ion-header>
 
 <ion-content #content class="links-content">
@@ -19,31 +19,43 @@
   </div>
   <ion-card text-center *ngIf="!favsLoading && favs?.length <= 0">
     <ion-card-header>
-     No favorites
+      No favorites
     </ion-card-header>
     <ion-card-content>
-        <p >You do not have favorite links yet.</p>
+      <p>You do not have favorite links yet.</p>
     </ion-card-content>
   </ion-card>
+
+  <h2 class="title">{{'Favorites' | gtranslate:gtp.last }}</h2>
+
+
   <ion-card *ngFor="let article of favs">
-    <ion-card-header (click)="openExternal(article.url)" text-wrap [innerHTML]="article.title"></ion-card-header>
-    <ion-card-content>
-      <p (click)="openExternal(article.url)" text-wrap [innerHTML]="article?.desc"></p>
-    </ion-card-content>
+    <div tappable (click)="openArticle(article)">
+
+      <ion-card-content class="bg_content_news">
+        <h2 [innerHTML]="article?.title | gtranslate:gtp.last"></h2>
+        <p class="date">{{ article?.date | date:'d MMM, yyy' }} | {{ article?.date | date:'HH:mm' }}h | UTC</p>
+
+        <div class="html-content" *ngIf="article?.content" [innerHTML]="article?.content | gtranslate:gtp.last"></div>
+        <div class="html-content" *ngIf="article?.desc" [innerHTML]="article?.desc | gtranslate:gtp.last"></div>
+      </ion-card-content>
+    </div>
+
     <ion-row>
 
       <ion-col>
-        <button [color]="isFav(article) ? 'danger' : 'primary'" (click)="isFav(article) ? removeFav(article) : addFav(article)" ion-button icon-left clear small>
+        <button [color]="isFav(article) ? 'danger' : 'primary'" (click)="isFav(article) ? removeFav(article) : addFav(article)"
+          ion-button icon-left clear small>
           <ion-icon name="star"></ion-icon>
           <div>Favorite</div>
         </button>
 
-        <button (click)="share(article.url, article.title, article.desc)" ion-button icon-left clear small>
+        <button (click)="share(article.link, article.title, article.desc)" ion-button icon-left clear small>
           <ion-icon name="share"></ion-icon>
           <div>Share</div>
         </button>
 
-        <button (click)="openExternal(article.url)" ion-button icon-left clear small>
+        <button (click)="openExternal(article.link)" ion-button icon-left clear small>
           <ion-icon name="open"></ion-icon>
           <div>Open</div>
         </button>
@@ -52,6 +64,7 @@
 
     </ion-row>
   </ion-card>
+
   <app-footer></app-footer>
 
 </ion-content>

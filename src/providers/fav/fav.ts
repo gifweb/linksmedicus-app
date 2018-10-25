@@ -11,23 +11,21 @@ export class FavProvider {
       CREATE TABLE IF NOT EXISTS favs (
         localId INTEGER PRIMARY KEY,
         id INTEGER,
+        date VARCHAR(250),
         title VARCHAR(250),
-        desc VARCHAR(250),
-        url VARCHAR(250),
-        category VARCHAR(250),
-        categoryId INTEGER
+        slug VARCHAR(250),
+        content TEXT,
+        desc TEXT,
+        link VARCHAR(250)
       )
     `;
-    this.dbPromise = SqlDatabase.open('lmdb' + '2' + '.db', [createItemsTable]);
+    this.dbPromise = SqlDatabase.open('lmdb' + '5' + '.db', [createItemsTable]);
   }
 
-  getItems(category): Promise<any[]> {
-    let select = 'SELECT id, title, desc, url, category, categoryId FROM favs WHERE categoryId = ?';
-    let params = [category.id];
-    if(category === false){
-      select = 'SELECT id, title, desc, url, category, categoryId FROM favs';
-      params = [];
-    }
+  getItems(): Promise<any[]> {
+
+    const select = 'SELECT id, date, title, slug, content, desc, link FROM favs';
+    const params = [];
     return this.dbPromise
       .then(db => db.execute(select, params))
       .then(resultSet => {
@@ -36,25 +34,26 @@ export class FavProvider {
           const row = resultSet.rows.item(i);
           items.push({
             id: row.id,
+            date: row.date,
             title: row.title,
-            desc: row.desc,
-            url: row.url,
-            category: row.category,
-            categoryId: row.categoryId,
+            slug: row.slug,
+            content: (row.content !== 'undefined') ? row.content : false,
+            desc: (row.desc !== 'undefined') ? row.desc : false,
+            link: row.link,
           });
         }
         return items;
       });
   }
 
-  addItem(link, category) {
-    const select = 'INSERT INTO favs VALUES(NULL,?,?,?,?,?,?)';
+  addItem(link) {
+    const select = 'INSERT INTO favs VALUES(NULL,?,?,?,?,?,?,?)';
     return this.dbPromise
-      .then(db => db.execute(select, [link.id, link.title, link.desc, link.url, category.name, category.id]))
+      .then(db => db.execute(select, [link.id, link.date, link.title, link.slug, link.content, link.desc, link.link]))
       .catch(err => console.log(err))
   }
 
-  removeItem(link, category) {
+  removeItem(link) {
     const deleteSql = 'DELETE FROM favs WHERE id=?';
     return this.dbPromise
       .then(db => db.execute(deleteSql, [link.id]))
