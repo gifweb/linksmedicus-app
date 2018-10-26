@@ -62,6 +62,7 @@ export class MyApp {
         this.oneSignal.endInit();
 
         this.deeplinks.route({
+          
           '/medical-specialties': { target: 'specialties' },
           '/medical-specialties/': { target: 'specialties' },
           '/medical-specialties/:slug': { target: 'links' },
@@ -86,10 +87,18 @@ export class MyApp {
           '/2017/news/:slug': { target: 'article' },
           '/2017/news/:slug/': { target: 'article' },
 
+          '/specialties/top10/': { target: 'top10' },
+          '/2017/specialties/top10/': { target: 'top10' },
+
         }).subscribe((match) => {
           console.log('Successfully matched route', match);
           if (match.$route.target === 'article') {
             this.nav.push('article', match.$args);
+
+          } else if(match.$route.target === 'top10') {
+            
+            this.nav.setRoot('news', { specialtie: 177, title: 'TOP 10 Medical News Stories' });
+
           } else {
             this.nav.setRoot(match.$route.target, match.$args);
           }
