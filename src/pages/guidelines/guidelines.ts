@@ -1,20 +1,26 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content, InfiniteScroll, LoadingController, PopoverController } from 'ionic-angular';
 import { OpenUrlProvider } from '../../providers/open-url/open-url';
 import { WpProvider } from '../../providers/wp/wp';
 import { GuidelinesPopoverPage } from './guideline.popover';
+import { GtranslateProvider } from '../../providers/gtranslate/gtranslate';
+import { GtranslatePipe } from '../../pipes/gtranslate/gtranslate';
+import { Subscription } from 'rxjs';
 
 @IonicPage({
   name: 'guidelines',
   priority: 'high',
   segment: 'guidelines/:slug',
-  defaultHistory: ['library']
+  defaultHistory: ['home']
 })
 @Component({
   selector: 'page-guidelines',
   templateUrl: 'guidelines.html',
+  providers: [
+    GtranslatePipe
+  ]
 })
-export class GuidelinesPage {
+export class GuidelinesPage implements OnDestroy{
 
   @ViewChild(Content) content: Content;
 
@@ -25,6 +31,8 @@ export class GuidelinesPage {
 
   guideline: any;
 
+  lastSub: Subscription;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -32,13 +40,25 @@ export class GuidelinesPage {
     private loadingCtrl: LoadingController,
     private openUrl: OpenUrlProvider,
     private popoverCtrl: PopoverController,
+    public gtp: GtranslateProvider,
+    private gtpipe: GtranslatePipe,
   ) {
     this.guideline = this.navParams.get('guideline');
     if (this.guideline === undefined) {
-      this.navCtrl.setPages([{ page: 'library' }], { animate: true, animation: 'back' });
+      this.navCtrl.pop();
       return;
     }
     this.loadGuidelines(this.guideline.id, true);
+
+    this.lastSub = this.gtp.last$.debounceTime(1500).subscribe(() => {
+      //this.loadGuidelines(this.guideline.id, true);
+    })
+  }
+
+  ngOnDestroy(){
+    if(this.lastSub){
+      this.lastSub.unsubscribe();
+    }
   }
 
   loadGuidelines(guidelineId, flush?, infiniteScroll?: InfiniteScroll) {
@@ -52,7 +72,7 @@ export class GuidelinesPage {
         this.guidelines.push(item);
         this.topics.push({
           id: item.id,
-          title: item.guidelines['0']['002'],
+          title: this.gtpipe.transform(item.guidelines['0']['002']),
         });
       })
       this.guidelinesLoading = false;

@@ -1,17 +1,19 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <button ion-button menuToggle="left">
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      {{guideline?.name}}
-    </ion-title>
-
-  </ion-navbar>
+  <ion-grid no-padding border-bottom>
+    <ion-row align-items-center>
+      <ion-col>
+        <open-access></open-access>
+      </ion-col>
+      <ion-col col-auto text-right>
+        <gtranslate-select></gtranslate-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <app-header></app-header>
 </ion-header>
 
-<ion-content #content class="links-content">
 
+<ion-content #content class="links-content">
 
   <div padding text-center *ngIf="guidelinesLoading">
     <ion-spinner name="crescent"></ion-spinner>
@@ -19,14 +21,16 @@
   <div class="icon-select-container" ion-fixed *ngIf="!guidelinesLoading">
     <ion-icon class="icon-select" (click)="presentPopover($event)" item-right name="arrow-dropdown"></ion-icon>
   </div>
+  <h1 text-center *ngIf="posts && posts.length > 0" [innerHTML]="guideline.name | gtranslate:gtp.last"></h1>
+
   <ng-container *ngFor="let guide of guidelines">
 
     <ion-item-group *ngFor="let gd of guide.guidelines">
-      <ion-item-divider [attr.id]="'topic-' + guide.id" ion-affix [content]="content">{{gd['002']}} </ion-item-divider>
+      <ion-item-divider [attr.id]="'topic-' + guide.id" ion-affix [content]="content">{{gd['002'] | gtranslate:gtp.last }} </ion-item-divider>
       <ng-container *ngFor="let item of gd['003']">
-        <ion-item class="item-title">{{item['004']}}</ion-item>
+        <ion-item class="item-title">{{item['004'] | gtranslate:gtp.last }}</ion-item>
         <ng-container *ngFor="let eachLink of item['005']">
-          <ion-item (click)="openExternal(eachLink['006'])" text-wrap>{{eachLink['007']}}</ion-item>
+          <ion-item (click)="openExternal(eachLink['006'])" text-wrap>{{eachLink['007'] | gtranslate:gtp.last }}</ion-item>
         </ng-container>
       </ng-container>
     </ion-item-group>

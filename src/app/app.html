@@ -84,7 +84,7 @@
           </ng-container>
 
           <ng-container *ngIf="openedMenu && submenus && openedMenu === 'guidelines'">
-            <button menuClose *ngFor="let item of submenus[openedMenu]" ion-item (click)="openPage('guidelines', {guideline: item, title: item.name})"
+            <button menuClose *ngFor="let item of submenus[openedMenu]" ion-item (click)="openPage('guidelines', {guideline: item, title: item.name, slug: item.slug})"
               detail-none>
               <span [innerHTML]="item.name | gtranslate:gtp.last"></span>
             </button>

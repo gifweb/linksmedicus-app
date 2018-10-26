@@ -104,7 +104,7 @@
 
   </ion-card>
 
-  <ion-card *ngIf="segment2 === 'databases'" class="segment-databases">
+  <ion-card *ngIf="segment2 === 'databases'" class="segment-databases"> 
     <div padding text-center *ngIf="!submenus?.database">
       <ion-spinner name="crescent"></ion-spinner>
     </div>
@@ -131,7 +131,7 @@
     </div>
 
     <ng-container *ngIf="submenus">
-      <button menuClose *ngFor="let item of submenus.guidelines" ion-item (click)="openPage('news', {specialtie: item.id, title: item.name})"
+      <button menuClose *ngFor="let item of submenus.guidelines" ion-item (click)="openPage('guidelines', {guideline: item, title: item.name, slug: item.slug})"
         detail-none no-lines>
         <span [innerHTML]="item.name | gtranslate:gtp.last"></span>
       </button>

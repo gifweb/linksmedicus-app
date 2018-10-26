@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WpProvider } from '../../providers/wp/wp';
+import { GtranslateProvider } from '../../providers/gtranslate/gtranslate';
 
 @IonicPage({
   name: 'library',
@@ -21,6 +22,7 @@ export class LibraryPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private wp: WpProvider,
+    public gtp: GtranslateProvider,
   ) {
     this.loadGuideline();
   }
