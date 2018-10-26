@@ -108,7 +108,7 @@ export class WpProvider {
   }
 
   getSubMenuGuidelines() {
-    return this.http.get(Config.WORDPRESS_REST_API_URL + "specialties?per_page=100&exclude=184,185")
+    return this.http.get(Config.WORDPRESS_REST_API_URL + "guideline?per_page=100")
       .map(res => res.json())
       .toPromise();
   }

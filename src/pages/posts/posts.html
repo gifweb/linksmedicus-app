@@ -20,13 +20,34 @@
       <ion-spinner name="crescent"></ion-spinner>
     </div>
     <h1 text-center *ngIf="posts && posts.length > 0" [innerHTML]="title | gtranslate:gtp.last"></h1>
-    <div *ngFor="let article of posts" tappable (click)="openArticle(article)">
+    <div *ngFor="let article of posts" >
       <ion-card>
-        <ion-card-content class="bg_content_news"> 
+        <ion-card-content class="bg_content_news" tappable (click)="openArticle(article)"> 
           <h2 text-wrap [innerHTML]="article.title | gtranslate:gtp.last"></h2>
           <!--p class="date">{{ article?.date | date:'d MMM, yyy' }} | {{ article?.date | date:'HH:mm' }}h | UTC</p-->
           <div class="html-content" [innerHTML]="article?.desc | gtranslate:gtp.last"></div>
         </ion-card-content>
+        <ion-row>
+
+          <ion-col>
+            <button [color]="isFav(article) ? 'danger' : 'primary'" (click)="isFav(article) ? removeFav(article) : addFav(article)" ion-button icon-left clear small>
+              <ion-icon name="star"></ion-icon>
+              <div>Favorite</div>
+            </button>
+    
+            <button (click)="share(article.url, article.title, article.desc)" ion-button icon-left clear small>
+              <ion-icon name="share"></ion-icon>
+              <div>Share</div>
+            </button>
+    
+            <button (click)="openExternal(article.url)" ion-button icon-left clear small>
+              <ion-icon name="open"></ion-icon>
+              <div>Open</div>
+            </button>
+    
+          </ion-col>
+    
+        </ion-row>
       </ion-card>
     </div>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

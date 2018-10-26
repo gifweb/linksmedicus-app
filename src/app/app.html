@@ -76,12 +76,20 @@
           <button ion-item (click)="closeMenu()" icon-only float-right detail-none>
             <ion-icon name="close" item-right></ion-icon>
           </button>
-          <ng-container *ngIf="openedMenu && submenus && openedMenu !== 'database'">
+          <ng-container *ngIf="openedMenu && submenus && openedMenu === 'news'">
             <button menuClose *ngFor="let item of submenus[openedMenu]" ion-item (click)="openPage('news', {specialtie: item.id, title: item.name})"
               detail-none>
               <span [innerHTML]="item.name | gtranslate:gtp.last"></span>
             </button>
           </ng-container>
+
+          <ng-container *ngIf="openedMenu && submenus && openedMenu === 'guidelines'">
+            <button menuClose *ngFor="let item of submenus[openedMenu]" ion-item (click)="openPage('guidelines', {guideline: item, title: item.name})"
+              detail-none>
+              <span [innerHTML]="item.name | gtranslate:gtp.last"></span>
+            </button>
+          </ng-container>
+
           <ng-container *ngIf="openedMenu && submenus && openedMenu === 'database'">
             <ion-item-divider menuClose (click)="openSpecialties()">{{'Specialties Homepage' | gtranslate:gtp.last }}
               <ion-icon name="ios-link"></ion-icon>

@@ -5,6 +5,7 @@ import { LoadingController } from 'ionic-angular';
 import { InfiniteScroll } from 'ionic-angular';
 import { OpenUrlProvider } from '../../providers/open-url/open-url';
 import { GtranslateProvider } from '../../providers/gtranslate/gtranslate';
+import { FavProvider } from '../../providers/fav/fav';
 
 @IonicPage({
   name: 'posts',
@@ -26,6 +27,9 @@ export class PostsPage {
   archive: any = false;
   title: string = '';
 
+  favs: any[] = [];
+
+
   _specialtie: any;
   get specialtie(): number {
     return this._specialtie;
@@ -44,6 +48,7 @@ export class PostsPage {
     private loadingCtrl: LoadingController,
     private openUrl: OpenUrlProvider,
     public gtp: GtranslateProvider,
+    private fav: FavProvider,
   ) {
     //this.loadSpecialties();
     this.archive = (this.navParams.get('archive')) ? this.navParams.get('archive') : false;
@@ -52,6 +57,8 @@ export class PostsPage {
     this.gtp.last$.subscribe((last) => {
       this.updateLinks();
     })
+    this.loadFavs();
+
   }
 
   /*loadSpecialties() {
@@ -68,6 +75,34 @@ export class PostsPage {
     console.log('article', article)
     this.openUrl.open(article.url);
     //this.navCtrl.push('article', { article })
+  }
+
+  loadFavs() {
+    console.log('loadFavs');
+    this.fav.getItems().then((data) => {
+      console.log('loadFavs loaded!', data);
+      this.favs = data;
+    }).catch(err => {
+      console.log('loadFavs err', err);
+    })
+  }
+
+  isFav(link) {
+    return this.favs.find(fav => fav.id === link.id)
+  }
+
+  addFav(link) {
+    this.fav.addItem(link).then((res) => {
+      console.log(res);
+      this.loadFavs();
+    })
+  }
+
+  removeFav(link) {
+    this.fav.removeItem(link).then((res) => {
+      console.log(res);
+      this.loadFavs();
+    })
   }
 
   loadPosts(specialtie, flush?, infiniteScroll?: InfiniteScroll) {

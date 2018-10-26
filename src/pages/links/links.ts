@@ -24,7 +24,7 @@ export class LinksPage {
   links: any[];
   linksLoading: boolean = false;
   linksPage: number = 1;
-  favs: any[];
+  favs: any[] = [];
 
   category: any;
 
