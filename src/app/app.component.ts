@@ -62,17 +62,37 @@ export class MyApp {
         this.oneSignal.endInit();
 
         this.deeplinks.route({
+
+
+          '/specialties/top10/': { target: 'top10' },
+          '/2017/specialties/top10/': { target: 'top10' },
+          
+          '/specialties/top10': { target: 'top10' },
+          '/2017/specialties/top10': { target: 'top10' },
           
           '/medical-specialties': { target: 'specialties' },
           '/medical-specialties/': { target: 'specialties' },
-          '/medical-specialties/:slug': { target: 'links' },
-          '/medical-specialties/:slug/': { target: 'links' },
-          '/specialties/:slug': { target: 'news' },
-          '/specialties/:slug/': { target: 'news' },
+          '/medical-specialties/:slug': { target: 'specialtie' },
+          '/medical-specialties/:slug/': { target: 'specialtie' },
+          '/2017/medical-specialties': { target: 'specialties' },
+          '/2017/medical-specialties/': { target: 'specialties' },
+          '/2017/medical-specialties/:slug': { target: 'specialtie' },
+          '/2017/medical-specialties/:slug/': { target: 'specialtie' },
+
           '/guidelines/': { target: 'library' },
           '/guidelines': { target: 'library' },
           '/guideline/:slug': { target: 'guidelines' },
           '/guideline/:slug/': { target: 'guidelines' },
+          '/2017/guidelines/': { target: 'library' },
+          '/2017/guidelines': { target: 'library' },
+          '/2017/guideline/:slug': { target: 'guidelines' },
+          '/2017/guideline/:slug/': { target: 'guidelines' },
+
+          '/specialties/:slug': { target: 'news' },
+          '/specialties/:slug/': { target: 'news' },
+          '/2017/specialties/:slug': { target: 'news' },
+          '/2017//specialties/:slug/': { target: 'news' },
+
 
           '/about-us': { target: 'about' },
           '/about-us/': { target: 'about' },
@@ -83,17 +103,18 @@ export class MyApp {
 
           '/news/:slug': { target: 'article' },
           '/news/:slug/': { target: 'article' },
-          
           '/2017/news/:slug': { target: 'article' },
           '/2017/news/:slug/': { target: 'article' },
 
-          '/specialties/top10/': { target: 'top10' },
-          '/2017/specialties/top10/': { target: 'top10' },
 
         }).subscribe((match) => {
           console.log('Successfully matched route', match);
           if (match.$route.target === 'article') {
             this.nav.push('article', match.$args);
+
+          } else if(match.$route.target === 'specialtie') {
+            
+            this.nav.setRoot('posts', match.$args);
 
           } else if(match.$route.target === 'top10') {
             

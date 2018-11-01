@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnDestroy } from '@angular/core';
+import { Component, ViewChild, OnDestroy, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content, InfiniteScroll, LoadingController, PopoverController } from 'ionic-angular';
 import { OpenUrlProvider } from '../../providers/open-url/open-url';
 import { WpProvider } from '../../providers/wp/wp';
@@ -42,17 +42,31 @@ export class GuidelinesPage implements OnDestroy{
     private popoverCtrl: PopoverController,
     public gtp: GtranslateProvider,
     private gtpipe: GtranslatePipe,
+    private _zone: NgZone,
   ) {
-    this.guideline = this.navParams.get('guideline');
-    if (this.guideline === undefined) {
-      this.navCtrl.pop();
-      return;
-    }
-    this.loadGuidelines(this.guideline.id, true);
-
+   
+    this.init();
     this.lastSub = this.gtp.last$.debounceTime(1500).subscribe(() => {
       //this.loadGuidelines(this.guideline.id, true);
     })
+  }
+
+  async init(){
+    this.guideline = this.navParams.get('guideline');
+    if (!this.guideline) {
+      const slug = this.navParams.get('slug');
+      if(!slug){
+        this.navCtrl.pop();
+        return;
+      }
+      this.guideline = await this.wp.getGuidelineBySlug(slug).toPromise();
+
+    }
+    console.log('init this.guideline', this.guideline)
+    this._zone.run(() => {
+      this.loadGuidelines(this.guideline.id, true);
+    })
+
   }
 
   ngOnDestroy(){

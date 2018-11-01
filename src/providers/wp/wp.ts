@@ -50,6 +50,22 @@ export class WpProvider {
       .map(data => (data[0]) ? data[0] : data);
   }
 
+  getSpecialtieBySlug(slug) {
+    return this.http.get(Config.WORDPRESS_REST_API_URL + "categories/?slug=" + slug + "&per_page=1")
+      .map(res => res.json())
+      .map(data => data.map(item => {
+        return {
+          id: item.id,
+          name: item.name,
+          nomepc: item.nomepc,
+          img: item.img,
+          count: item.count,
+          slug: item.slug,
+        };
+      }))
+      .map(data => (data[0]) ? data[0] : data);
+  }
+
   getSpecialtiesCategories() {
     return this.http.get(Config.WORDPRESS_REST_API_URL + "categories?include=29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,8,9,12,13,14,15,16,17,18,19,20,21,22,23&orderby=name&per_page=100")
       .map(res => res.json())
@@ -153,6 +169,19 @@ export class WpProvider {
       }));
   }
 
+  getGuidelineBySlug(slug) {
+    return this.http.get(Config.WORDPRESS_REST_API_URL + "guideline/?slug=" + slug + "&per_page=1")
+      .map(res => res.json())
+      .map(data => data.map(item => {
+        return {
+          id: item.id,
+          name: item.name,
+          slug: item.slug,
+        };
+      }))
+      .map(data => (data[0]) ? data[0] : data);
+  }
+
   getGuidelines(guideline, page?: number) {
     if (page === undefined) {
       page = 1;
@@ -221,6 +250,7 @@ export class WpProvider {
         return {
           id: item.id,
           date: item.date,
+          data_fixed: item.data_fixed,
           title: item.title.rendered,
           content: content,
           link: item.link,

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { WpProvider } from '../../providers/wp/wp';
 import { LoadingController } from 'ionic-angular';
@@ -37,7 +37,9 @@ export class PostsPage {
   set specialtie(value: number) {
     console.log('set')
     this.postsPage = 1;
-    this.loadPosts(value, true);
+    this._zone.run(() => {
+      this.loadPosts(value, true);
+    })
     this._specialtie = value;
   }
 
@@ -49,11 +51,31 @@ export class PostsPage {
     private openUrl: OpenUrlProvider,
     public gtp: GtranslateProvider,
     private fav: FavProvider,
+    private _zone: NgZone,
   ) {
     //this.loadSpecialties();
+
+    this.init();
+  }
+
+  async init() {
     this.archive = (this.navParams.get('archive')) ? this.navParams.get('archive') : false;
     this.specialtie = (this.navParams.get('specialtie')) ? this.navParams.get('specialtie') : 177;
     this.title = (this.navParams.get('title')) ? this.navParams.get('title') : '';
+    console.log('init', this.specialtie)
+    if (!this.navParams.get('specialtie')) {
+      const slug = this.navParams.get('slug');
+      if (slug) {
+        console.log('specialtieBySlug 1', slug);
+        const specialtieBySlug = await this.wp.getSpecialtieBySlug(slug).toPromise()
+        console.log('specialtieBySlug 2', specialtieBySlug);
+        this.specialtie = specialtieBySlug.id;
+        this.title = specialtieBySlug.name;
+      }
+    }
+
+
+
     this.gtp.last$.subscribe((last) => {
       this.updateLinks();
     })
