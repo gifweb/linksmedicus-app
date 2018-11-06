@@ -8,7 +8,7 @@ app-header {
             color: #fff !important;
         }
         .toolbar-background-md {
-    background: #1d6c90;
+    background: #F4F4F4;
 }
         .select-category {
             background: transparent;
@@ -20,8 +20,8 @@ app-header {
         }
         .button-menu {
             height: 56px;
-            background: color($colors, primary);
-            color: color($colors, light);
+            background: color($colors, light);
+            color: color($colors, primary);
             border-radius: 0;
             padding: 0;
             margin: 0;
@@ -32,5 +32,5 @@ app-header {
             margin: 0;
         }
     }
-    
+
 }

@@ -7,11 +7,11 @@
 
   <ion-title>
     <div (click)="scrollTop()">
-      <img src="assets/img/logo-novo.png" class="header-logo" />
+      <img src="assets/img/logo-novo-color.png" class="header-logo" />
     </div>
   </ion-title>
   <ion-buttons right>
-    <button color="white" *ngIf="action === 'search'" ion-button icon-only (click)="toggleRightMenu()">
+    <button color="primary" *ngIf="action === 'search'" ion-button icon-only (click)="toggleRightMenu()">
       <ion-icon name="search"></ion-icon>
     </button>
     <button color="primary" *ngIf="action === 'share'" ion-button icon-only (click)="share()">

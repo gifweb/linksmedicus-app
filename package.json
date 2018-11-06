@@ -34,7 +34,8 @@
     "@ionic-native/status-bar": "~4.11.0",
     "@ionic-native/themeable-browser": "~4.11.0",
     "@ionic/storage": "2.1.3",
-    "cordova-android": "6.3.0",
+    "com.ingage.themeablebrowserimages": "https://github.com/leoruhland/cordova-plugin-themeablebrowserimages-light",
+    "cordova-android": "^6.3.0",
     "cordova-ios": "~4.3.1",
     "cordova-plugin-browsertab": "^0.2.0",
     "cordova-plugin-compat": "^1.2.0",
@@ -44,7 +45,7 @@
     "cordova-plugin-ionic-webview": "~1.1.16",
     "cordova-plugin-splashscreen": "^4.0.3",
     "cordova-plugin-statusbar": "https://github.com/apache/cordova-plugin-statusbar",
-    "cordova-plugin-themeablebrowser": "^0.2.17",
+    "cordova-plugin-themeablebrowser": "git+https://github.com/leoruhland/cordova-plugin-themeablebrowser.git",
     "cordova-plugin-whitelist": "^1.3.1",
     "cordova-plugin-x-socialsharing": "~5.2.1",
     "cordova-sqlite-storage": "~2.2.0",
@@ -58,8 +59,7 @@
     "onesignal-cordova-plugin": "^2.4.4",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.26",
-    "com.ingage.themeablebrowserimages": "https://github.com/leoruhland/cordova-plugin-themeablebrowserimages-light"
+    "zone.js": "0.8.26"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.11",
@@ -102,8 +102,7 @@
       "onesignal-cordova-plugin": {}
     },
     "platforms": [
-      "ios",
-      "android"
+      "ios"
     ]
   }
 }

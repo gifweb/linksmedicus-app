@@ -21,10 +21,10 @@
   <div *ngIf="article">
 
     <ion-card>
-        <ion-card-content class="bg_content_news"> 
+        <ion-card-content class="bg_content_news">
     <h2 [innerHTML]="article?.title | gtranslate:gtp.last"></h2>
     <p class="date">{{ article?.date | date:'d MMM, yyy' }} | {{ article?.date | date:'HH:mm' }}h | UTC</p>
-      
+
           <div class="html-content" [innerHTML]="article?.content | gtranslate:gtp.last"></div>
           <div class="html-content" [innerHTML]="article?.desc | gtranslate:gtp.last"></div>
         </ion-card-content>
@@ -35,19 +35,19 @@
               <ion-icon name="star"></ion-icon>
               <div>Favorite</div>
             </button>
-    
+
             <button (click)="share(article.link, article.title, article.desc)" ion-button icon-left clear small>
               <ion-icon name="share"></ion-icon>
               <div>Share</div>
             </button>
-    
-            <button (click)="openExternal(article.link)" ion-button icon-left clear small>
+
+            <!--button-- (click)="openExternal(article.link)" ion-button icon-left clear small>
               <ion-icon name="open"></ion-icon>
               <div>Open</div>
-            </button>
-    
+            </button-->
+
           </ion-col>
-    
+
         </ion-row>
       </ion-card>
   </div>

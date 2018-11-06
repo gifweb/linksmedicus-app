@@ -66,10 +66,11 @@ export class MyApp {
 
           '/specialties/top10/': { target: 'top10' },
           '/2017/specialties/top10/': { target: 'top10' },
-          
+
           '/specialties/top10': { target: 'top10' },
           '/2017/specialties/top10': { target: 'top10' },
-          
+          '/subscribe': { target: 'subscribe' },
+
           '/medical-specialties': { target: 'specialties' },
           '/medical-specialties/': { target: 'specialties' },
           '/medical-specialties/:slug': { target: 'specialtie' },
@@ -113,11 +114,11 @@ export class MyApp {
             this.nav.push('article', match.$args);
 
           } else if(match.$route.target === 'specialtie') {
-            
+
             this.nav.setRoot('posts', match.$args);
 
           } else if(match.$route.target === 'top10') {
-            
+
             this.nav.setRoot('news', { specialtie: 177, title: 'TOP 10 Medical News Stories' });
 
           } else {

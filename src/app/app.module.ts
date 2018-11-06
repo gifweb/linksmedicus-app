@@ -37,7 +37,7 @@ import { NgxModelModule } from 'ngx-model';
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule, 
+    FormsModule,
     IonicModule.forRoot(MyApp),
     NgxModelModule,
     ComponentsModule,
